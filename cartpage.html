@@ -4,35 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cart | MyStore</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script> 
   <script src="https://unpkg.com/vue@3"></script>
 </head>
-<body>
-  <div id="app">
+<body class="bg-white text-gray-800">
+  <div id="app" class="p-6 max-w-2xl mx-auto">
+    
     <!-- Header -->
-    <header>
-      <!-- Nav + cart icon -->
+    <header class="mb-6 flex justify-between items-center border-b pb-4">
+      <h2 class="text-lg font-bold">MY BAG <span class="font-normal">({{ cart.length }} ITEMS)</span></h2>
+      <button @click="closeCart" class="text-xl font-bold">×</button>
     </header>
 
-    <!-- Cart Items Section -->
-    <section>
-      <!-- v-for to list items -->
-      <!-- Quantity controls, remove buttons -->
+    <!-- Cart Items -->
+    <section v-for="(item, index) in cart" :key="item.id" class="flex items-center border-b py-4">
+      <img :src="item.image" alt="Product" class="w-20 h-20 object-contain" />
+      <div class="flex-1 ml-4">
+        <p class="font-semibold">{{ item.name }}</p>
+        <p class="text-sm">Size {{ item.size }}</p>
+        <p class="font-bold mt-1">RM{{ item.price.toFixed(2) }} MYR</p>
+        <div class="flex items-center mt-2 space-x-2">
+          <button @click="decreaseQty(index)" class="border w-8 h-8">-</button>
+          <span>{{ item.qty }}</span>
+          <button @click="increaseQty(index)" class="border w-8 h-8">+</button>
+        </div>
+      </div>
+      <button @click="removeItem(index)" class="text-xl font-bold ml-4">×</button>
     </section>
 
-    <!-- Cart Summary Section -->
-    <section>
-      <!-- Total price + "Proceed to Checkout" button -->
+    <!-- Summary -->
+    <section class="mt-6">
+      <div class="flex justify-between mb-2">
+        <span>SUBTOTAL</span>
+        <span class="font-bold">RM{{ subtotal.toFixed(2) }} MYR</span>
+      </div>
+      <p class="text-sm text-gray-500 mb-4">Tax included and shipping calculated at checkout</p>
+      <div class="flex space-x-2">
+        <button class="flex-1 border py-2">View Bag</button>
+        <button class="flex-1 bg-black text-white py-2">Checkout</button>
+      </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-      <!-- Basic footer info -->
-    </footer>
   </div>
 
   <script>
-    // Vue logic: cart data, item remove/update quantity
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          cart: [
+            {
+              id: 1,
+              name: "Cardigan",
+              size: "M",
+              price: 55.00,
+              qty: 1,
+              image: "cardigan.jpg"
+            },
+            {
+              id: 2,
+              name: "Skirt",
+              size: "S",
+              price: 75.00,
+              qty: 1,
+              image: "skirt.jpg"
+            }
+          ]
+        };
+      },
+      computed: {
+        subtotal() {
+          return this.cart.reduce((total, item) => total + item.price * item.qty, 0);
+        }
+      },
+      methods: {
+        increaseQty(index) {
+          this.cart[index].qty++;
+        },
+        decreaseQty(index) {
+          if (this.cart[index].qty > 1) this.cart[index].qty--;
+        },
+        removeItem(index) {
+          this.cart.splice(index, 1);
+        },
+        closeCart() {
+          alert("Cart closed");
+        }
+      }
+    }).mount("#app");
   </script>
 </body>
 </html>
