@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Detail | Veloura</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3"></script>
-</head>
-<body class="bg-white text-gray-800">
-  <div id="app">
-
-    <!-- Header -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloura - Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <header class="bg-white shadow-lg sticky top-0 z-50">
             <nav class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between items-center py-4">
@@ -104,100 +101,67 @@
             </nav>
         </header>
 
-    <!-- Product Section -->
-    <section class="container mx-auto grid md:grid-cols-2 gap-8 px-4 py-8">
-      <!-- Product Images -->
+        
+    <!-- Top: Heading + Subscription (Horizontal on md+) -->
+    <div class="md:flex md:items-center md:justify-between text-center md:text-left">
+      <div class="mb-6 md:mb-0">
+        <h2 class="text-3xl font-bold">Stay Updated</h2>
+        <h3 class="text-xl text-[#555555]">Subscribe to our newsletter</h3>
+      </div>
+
+      <!-- Subscription Input -->
+      <div v-if="!subscribed" class="max-w-2xl w-full md:w-auto">
+        <div class="flex mt-4 md:mt-0">
+          <input 
+            v-model="email" 
+            type="email" 
+            placeholder="Enter your email" 
+            class="flex-1 px-4 py-3 rounded-l-lg text-[#333333] bg-white border focus:outline-none focus:ring-2 focus:ring-[#8B4513]"
+            @keyup.enter="subscribe"
+          >
+          <button 
+            @click="subscribe" 
+            :disabled="!email || subscribing"
+            class="bg-[#8B4513] text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-[#7a3e10] disabled:opacity-50 disabled:cursor-not-allowed transition">
+            Submit
+          </button>
+        </div>
+      </div>
+
+      <!-- Thank You -->
+      <div v-else class="mt-4 md:mt-0">
+        <h2 class="text-2xl font-bold text-green-600">Thank you!</h2>
+        <p class="text-[#555555]">You've successfully subscribed to our newsletter.</p>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12 pt-8 border-t border-[#cccccc]">
       <div>
-        <img src="https://via.placeholder.com/500x500" alt="Main Product" class="rounded mb-4">
-        <div class="grid grid-cols-3 gap-2">
-          <img src="https://via.placeholder.com/150" alt="Gallery 1" class="rounded">
-          <img src="https://via.placeholder.com/150" alt="Gallery 2" class="rounded">
-          <img src="https://via.placeholder.com/150" alt="Gallery 3" class="rounded">
-        </div>
+        <h4 class="font-bold text-lg mb-4 text-[#8B4513]">Veloura</h4>
+        <p>Discover the latest trends in fashion, technology, and home essentials.</p>
       </div>
-
-      <!-- Product Details -->
       <div>
-        <h1 class="text-3xl font-semibold mb-2">Classic Lace Dress</h1>
-        <p class="text-lg text-pink-600 font-bold mb-2">RM229.00 MYR</p>
-        <p class="text-sm text-gray-500 mb-2">★★★★★ (34 reviews)</p>
-        <p class="text-sm mb-4">Elegant lace dress perfect for tea parties, formal gatherings, and vintage-themed photoshoots.</p>
-
-        <div class="mb-4">
-          <p class="font-semibold mb-1">Size</p>
-          <div class="space-x-2">
-            <button class="border px-3 py-1 rounded">S</button>
-            <button class="border px-3 py-1 rounded">M</button>
-            <button class="border px-3 py-1 rounded">L</button>
-            <button class="border px-3 py-1 rounded">XL</button>
-          </div>
-        </div>
-
-        <button class="bg-black text-white px-6 py-3 mt-4 rounded hover:bg-gray-900">
-          Add to Cart
-        </button>
+        <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
+          <li><a href="productlist.html" class="hover:text-[#8B4513] transition">Products</a></li>
+          <li><a href="cart.html" class="hover:text-[#8B4513] transition">Cart</a></li>
+          <li><a href="status.html" class="hover:text-[#8B4513] transition">Orders</a></li>
+        </ul>
       </div>
-    </section>
-
-    <!-- Overview Section -->
-    <section class="container mx-auto px-4 py-10">
-      <h2 class="text-xl font-semibold mb-2">Product Overview</h2>
-      <p class="text-gray-600">This item features high-quality lace material, a comfortable fit, and timeless elegance suitable for any occasion.</p>
-    </section>
-
-    <!-- Recommendation Section -->
-    <section id="categories" class="container mx-auto px-4 py-10 bg-pink-50">
-      <h2 class="text-xl font-semibold mb-6">Recommended for You</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 1" class="rounded mb-2">
-          <h3 class="text-sm">ALBERT EARRINGS – RM59.00</h3>
-        </div>
-        <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 2" class="rounded mb-2">
-          <h3 class="text-sm">DOLL-LACE DRESS – RM209.00</h3>
-        </div>
-        <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 3" class="rounded mb-2">
-          <h3 class="text-sm">MILKY EARRINGS – RM69.00</h3>
-        </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4">Contact</h4>
+        <ul class="space-y-2">
+          <li>support@veloura.com</li>
+          <li>+1 (555) 123-4567</li>
+          <li>Follow us on social media</li>
+        </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- Customer Reviews -->
-    <section class="container mx-auto px-4 py-10">
-      <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
-      <div class="mb-4">
-        <p class="text-sm">5.0 ★★★★★ based on 12 reviews</p>
-      </div>
-      <textarea placeholder="Write a review..." class="w-full border rounded p-2 mb-4"></textarea>
-      <button class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Submit Review</button>
-    </section>
-
-    <!-- Footer / Join Us -->
-    <footer id="footer" class="bg-gray-100 py-10 mt-10">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-lg font-semibold mb-2">Join Our Newsletter</h2>
-        <p class="text-sm text-gray-600 mb-4">Stay updated with the latest styles and sales.</p>
-        <form class="flex justify-center gap-2 flex-wrap">
-          <input type="email" placeholder="Enter your email" class="px-4 py-2 border rounded w-full sm:w-auto">
-          <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-900">Subscribe</button>
-        </form>
-        <p class="mt-4 text-sm text-gray-500">Thank you!</p>
-      </div>
-    </footer>
-
+    <div class="mt-8 pt-8 border-t border-[#cccccc] text-center text-sm text-[#666666]">
+      <p>&copy; 2025 Veloura. All rights reserved.</p>
+    </div>
   </div>
-
-  <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          cartCount: 0
-        };
-      }
-    }).mount('#app');
-  </script>
-</body>
-</html>
+</footer>

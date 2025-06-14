@@ -1,0 +1,66 @@
+<footer id="footer" class="bg-[#F5F5DC] text-[#333333] py-16">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <!-- Top: Heading + Subscription (Horizontal on md+) -->
+    <div class="md:flex md:items-center md:justify-between text-center md:text-left">
+      <div class="mb-6 md:mb-0">
+        <h2 class="text-3xl font-bold">Stay Updated</h2>
+        <h3 class="text-xl text-[#555555]">Subscribe to our newsletter</h3>
+      </div>
+
+      <!-- Subscription Input -->
+      <div v-if="!subscribed" class="max-w-2xl w-full md:w-auto">
+        <div class="flex mt-4 md:mt-0">
+          <input 
+            v-model="email" 
+            type="email" 
+            placeholder="Enter your email" 
+            class="flex-1 px-4 py-3 rounded-l-lg text-[#333333] bg-white border focus:outline-none focus:ring-2 focus:ring-[#8B4513]"
+            @keyup.enter="subscribe"
+          >
+          <button 
+            @click="subscribe" 
+            :disabled="!email || subscribing"
+            class="bg-[#8B4513] text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-[#7a3e10] disabled:opacity-50 disabled:cursor-not-allowed transition">
+            Submit
+          </button>
+        </div>
+      </div>
+
+      <!-- Thank You -->
+      <div v-else class="mt-4 md:mt-0">
+        <h2 class="text-2xl font-bold text-green-600">Thank you!</h2>
+        <p class="text-[#555555]">You've successfully subscribed to our newsletter.</p>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12 pt-8 border-t border-[#cccccc]">
+      <div>
+        <h4 class="font-bold text-lg mb-4 text-[#8B4513]">Veloura</h4>
+        <p>Discover the latest trends in fashion, technology, and home essentials.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
+          <li><a href="productlist.html" class="hover:text-[#8B4513] transition">Products</a></li>
+          <li><a href="cart.html" class="hover:text-[#8B4513] transition">Cart</a></li>
+          <li><a href="status.html" class="hover:text-[#8B4513] transition">Orders</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4">Contact</h4>
+        <ul class="space-y-2">
+          <li>support@veloura.com</li>
+          <li>+1 (555) 123-4567</li>
+          <li>Follow us on social media</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-[#cccccc] text-center text-sm text-[#666666]">
+      <p>&copy; 2025 Veloura. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

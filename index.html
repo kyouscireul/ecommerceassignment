@@ -16,21 +16,22 @@
                 <div class="flex justify-between items-center py-4">
                     <!-- Logo -->
                     <div class="flex items-center">
-                        <a href="index.html" class="text-3xl font-bold text-purple-600 hover:text-purple-700 transition">
-                            Veloura
+                       <a href="index.html" class="text-3xl font-bold text-black-600 hover:text-purple-700 transition" style="font-family: 'Playfair Display', serif;">
+                          Veloura
                         </a>
+
                     </div>
 
                     <!-- Navigation Links -->
                     <div class="hidden lg:flex items-center space-x-8">
-                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-purple-600 transition font-medium">
-                            Trending
+                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            TRENDING
                         </a>
-                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600 transition font-medium">
-                            Categories
+                        <a href="productlistpage.html" @click="scrollToSection('categories')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            CATEGORIES
                         </a>
-                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-purple-600 transition font-medium">
-                            Join Us
+                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            JOIN US
                         </a>
                     </div>
 
@@ -41,39 +42,41 @@
                                 v-model="searchQuery" 
                                 type="text" 
                                 placeholder="Search products..." 
-                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
                             >
-                            <button 
-                                @click="performSearch"
-                                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 transition"
+                        <button 
+                            @click="performSearch"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition"
                             >
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                </svg>
-                            </button>
+                            <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+
                         </div>
                     </div>
 
                     <!-- User Actions -->
                     <div class="flex items-center space-x-4">
-                        <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-purple-600 transition font-medium">
-                            Login
+                        <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            LOGIN
                         </a>
                         <span class="text-gray-400">|</span>
-                        <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-purple-600 transition font-medium">
-                            Signup
+                        <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            SIGNUP
                         </a>
-                        <a href="wishlist.html" class="text-gray-700 hover:text-purple-600 transition relative">
+                        <a href="wishlist.html" class="text-gray-700 hover:text-black-600 transition relative">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                             </svg>
-                            <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ wishlistCount }}</span>
+                            <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
                         </a>
                         <a href="cart.html" class="text-gray-700 hover:text-purple-600 transition relative">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"/>
                             </svg>
-                            <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ cartCount }}</span>
+                            <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
                         </a>
                     </div>
 
@@ -204,63 +207,69 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer id="footer" class="bg-gray-900 text-white py-16">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
-                <h3 class="text-xl mb-8 text-gray-300">Subscribe to our newsletter</h3>
-                
-                <div v-if="!subscribed" class="max-w-md mx-auto mb-8">
-                    <div class="flex">
-                        <input 
-                            v-model="email" 
-                            type="email" 
-                            placeholder="Enter your email" 
-                            class="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            @keyup.enter="subscribe"
-                        >
-                        <button 
-                            @click="subscribe" 
-                            :disabled="!email || subscribing"
-                            class="bg-purple-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition">Submit</button>
-                    </div>
-                </div>
+    <!-- Top: Heading + Subscription (Horizontal on md+) -->
+    <div class="md:flex md:items-center md:justify-between text-center md:text-left">
+      <div class="mb-6 md:mb-0">
+        <h2 class="text-3xl font-bold">Stay Updated</h2>
+        <h3 class="text-xl text-[#555555]">Subscribe to our newsletter</h3>
+      </div>
 
-                <div v-else class="mb-8">
-                    <h2 class="text-2xl font-bold text-green-400 mb-4">Thank you!</h2>
-                    <p class="text-gray-300">You've successfully subscribed to our newsletter.</p>
-                </div>
+      <!-- Subscription Input -->
+      <div v-if="!subscribed" class="max-w-2xl w-full md:w-auto">
+        <div class="flex mt-4 md:mt-0">
+          <input 
+            v-model="email" 
+            type="email" 
+            placeholder="Enter your email" 
+            class="flex-1 px-4 py-3 rounded-l-lg text-[#333333] bg-white border focus:outline-none focus:ring-2 focus:ring-[#8B4513]"
+            @keyup.enter="subscribe"
+          >
+          <button 
+            @click="subscribe" 
+            :disabled="!email || subscribing"
+            class="bg-[#8B4513] text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-[#7a3e10] disabled:opacity-50 disabled:cursor-not-allowed transition">
+            Submit
+          </button>
+        </div>
+      </div>
 
-                <!-- Footer Links -->
-                <div class="grid md:grid-cols-3 gap-8 mt-12 pt-8 border-t border-gray-800">
-                    <div>
-                        <h4 class="font-bold text-lg mb-4 text-purple-400">Veloura</h4>
-                        <p class="text-gray-400">Discover the latest trends in fashion, technology, and home essentials.</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-                            <li><a href="productlist.html" class="hover:text-white transition">Products</a></li>
-                            <li><a href="cart.html" class="hover:text-white transition">Cart</a></li>
-                            <li><a href="status.html" class="hover:text-white transition">Orders</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Contact</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li>support@veloura.com</li>
-                            <li>+1 (555) 123-4567</li>
-                            <li>Follow us on social media</li>
-                        </ul>
-                    </div>
-                </div>
+      <!-- Thank You -->
+      <div v-else class="mt-4 md:mt-0">
+        <h2 class="text-2xl font-bold text-green-600">Thank you!</h2>
+        <p class="text-[#555555]">You've successfully subscribed to our newsletter.</p>
+      </div>
+    </div>
 
-                <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-                    <p>&copy; 2025 Veloura. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+    <!-- Footer Links -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12 pt-8 border-t border-[#cccccc]">
+      <div>
+        <h4 class="font-bold text-lg mb-4 text-[#8B4513]">Veloura</h4>
+        <p>Discover the latest trends in fashion, technology, and home essentials.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
+          <li><a href="productlist.html" class="hover:text-[#8B4513] transition">Products</a></li>
+          <li><a href="cart.html" class="hover:text-[#8B4513] transition">Cart</a></li>
+          <li><a href="status.html" class="hover:text-[#8B4513] transition">Orders</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4">Contact</h4>
+        <ul class="space-y-2">
+          <li>support@veloura.com</li>
+          <li>+1 (555) 123-4567</li>
+          <li>Follow us on social media</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-[#cccccc] text-center text-sm text-[#666666]">
+      <p>&copy; 2025 Veloura. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
         <!-- Login Modal -->
         <!-- <div v-if="showLogin" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click="showLogin = false">
