@@ -161,7 +161,7 @@
                 </div>
 
                 <!-- Trending Products Gallery -->
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-3 gap-6">
                     <div v-for="product in currentTrendingProducts" :key="product.id" 
                          class="group cursor-pointer" @click="goToProduct(product.id)">
                         <div class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -169,8 +169,12 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-4 left-4 text-white">
                                     <h3 class="text-xl font-bold mb-2">{{ product.name }}</h3>
-                                    <p class="text-2xl font-bold text-yellow-400">${{ product.price }}</p>
+                                    <p class="text-2xl font-bold text-yellow-400">${{ product.price.toFixed(2) }}</p>
                                 </div>
+                            </div>
+                            <div class="p-4 bg-white">
+                              <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
+                              <p class="text-purple-600 font-bold">${{ product.price.toFixed(2) }}</p>
                             </div>
                         </div>
                     </div>
@@ -180,12 +184,12 @@
 
         <!-- Categories Section -->
         <section id="categories" class="py-16 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-12">
+            <div class="max-w-8xl mx-auto px-4">
+                <div class="text-center mb-12 ">
                     <h2 class="text-4xl font-bold text-gray-900">Categories</h2>
                 </div>
                 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-3 gap-7">
                     <div v-for="category in mainCategories" :key="category.id" 
                          class="group cursor-pointer" @click="goToCategory(category.slug)">
                         <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
@@ -209,7 +213,7 @@
 
         <!-- Footer -->
         <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
-            <div class="max-w-6xl mx-auto px-4">
+            <div class="max-w-7xl mx-auto px-4">
                 <!-- Horizontal Subscription Section -->
                 <div class="flex flex-col md:flex-row items-center justify-between mb-12 pb-12 border-b border-gray-300">
                     <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
@@ -265,7 +269,7 @@
                     </div>
                 </div>
 
-                <div class="mt-12 pt-8 border-t border-gray-300 text-center text-gray-600">
+                <div class="mt-12 p-5 border-t border-gray-300 text-center text-gray-600">
                     <p>&copy; 2025 Veloura. All rights reserved.</p>
                 </div>
             </div>
@@ -342,7 +346,129 @@
                     image: "images/gadgetCategory.jpg",
                     itemCount: 73
                   }
-                ]
+                ],
+                trendingProducts: {
+                      clothes: [
+                        {
+                          id: 1,
+                          name: "Summer Linen Shirt",
+                          price: 49.99,
+                          image: "images/trending/shirt.jpg"
+                        },
+                        {
+                          id: 2,
+                          name: "Denim Jacket",
+                          price: 89.99,
+                          image: "images/trending/jacket.jpg"
+                        },
+                        {
+                          id: 3,
+                          name: "Casual Chinos",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 10,
+                          name: "Casual Seluar",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 11,
+                          name: "Casual Baju",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 12,
+                          name: "Casual Topi",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        }
+                      ],
+                      gadgets: [
+                        {
+                          id: 4,
+                          name: "Wireless Earbuds",
+                          price: 129.99,
+                          image: "images/trending/earbuds.jpg"
+                        },
+                        {
+                          id: 5,
+                          name: "Smart Watch",
+                          price: 199.99,
+                          image: "images/trending/watch.jpg"
+                        },
+                        {
+                          id: 6,
+                          name: "Bluetooth Speaker",
+                          price: 79.99,
+                          image: "images/trending/speaker.jpg"
+                        },
+                        {
+                          id: 13,
+                          name: "Casual Seluar",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 14,
+                          name: "Casual Baju",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 15,
+                          name: "Casual Topi",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        }
+                      ],
+                      appliances: [
+                        {
+                          id: 7,
+                          name: "Air Fryer",
+                          price: 149.99,
+                          image: "images/trending/airfryer.jpg"
+                        },
+                        {
+                          id: 8,
+                          name: "Blender",
+                          price: 89.99,
+                          image: "images/trending/blender.jpg"
+                        },
+                        {
+                          id: 9,
+                          name: "Coffee Maker",
+                          price: 119.99,
+                          image: "images/trending/coffee.jpg"
+                        },
+                        {
+                          id: 16,
+                          name: "Casual Seluar",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 17,
+                          name: "Casual Baju",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        },
+                        {
+                          id: 18,
+                          name: "Casual Topi",
+                          price: 59.99,
+                          image: "images/trending/pants.jpg"
+                        }
+                      ]
+                    },
+                    trendingCategory: 'clothes' // Default category
+              }
+            },
+            computed: {
+              currentTrendingProducts() {
+                return this.trendingProducts[this.trendingCategory];
               }
             },
             methods: {
