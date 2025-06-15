@@ -239,66 +239,24 @@
         </div>
     </section>
 </main>
-        <!-- Footer -->
-        <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
-            <div class="max-w-7xl mx-auto px-4">
-                <!-- Horizontal Subscription Section -->
-                <div class="flex flex-col md:flex-row items-center justify-between mb-12 pb-12 border-b border-gray-300">
-                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                        <h2 class="text-3xl font-bold mb-2">Stay Updated</h2>
-                        <h3 class="text-xl text-gray-600">Subscribe to our newsletter</h3>
-                    </div>
-                    
-                    <div class="md:w-1/2 w-full">
-                        <div v-if="!subscribed" class="flex">
-                            <input 
-                                v-model="email" 
-                                type="email" 
-                                placeholder="Enter your email" 
-                                class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                @keyup.enter="subscribe"
-                            >
-                            <button 
-                                @click="subscribe" 
-                                :disabled="!email || subscribing"
-                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
-                                Submit
-                            </button>
-                        </div>
-                        <!-- <div v-else class="text-center md:text-left">
-                            <h2 class="text-2xl font-bold text-green-600 mb-2">Thank you!</h2>
-                            <p class="text-gray-600">You've successfully subscribed to our newsletter.</p>
-                        </div> -->
-                    </div>
-                </div>
-
-                <!-- Horizontal Footer Links -->
-                <div class="flex flex-col md:flex-row justify-between gap-8">
-                    <div class="md:w-2/4">
-                        <h4 class="text-3xl font-bold text-black-600 hover:text-purple-700 transition mb-3 " style="font-family: 'Playfair Display', serif;">Veloura</h4>
-                        <p class="text-gray-600">Discover the latest trends in fashion, technology, and home essentials.</p>
-                    </div>
-                    <div class="md:w-1/3">
-                        <h4 class="font-bold text-lg mb-2">Quick Links</h4>
-                        <ul class="grid grid-cols-2 gap-2 text-gray-600">
-                            <li><a href="index.html" class="hover:text-purple-600 transition">Home</a></li>
-                            <li><a href="productlistpage.html" class="hover:text-purple-600 transition">Products</a></li>
-                            <li><a href="cart.html" class="hover:text-purple-600 transition">Cart</a></li>
-                            <li><a href="status.html" class="hover:text-purple-600 transition">Orders</a></li>
-                        </ul>
-                    </div>
-                    <div class="md:w-1/3">
-                        <h4 class="font-bold text-lg mb-2">Contact</h4>
-                        <ul class="grid space-y-1 text-gray-600">
-                            <li>support@veloura.com</li>
-                            <li>+1 (555) 123-4567</li>
-                            <li>@velouraecommerce</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mt-12 p-5 border-t border-gray-300 text-center text-gray-600">
-                    <p>&copy; 2025 Veloura. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+<!-- Footer -->
+<footer class="bg-white shadow-inner py-10 mt-16">
+  <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+    <p class="text-gray-700 text-lg">Stay updated</p>
+    <h2 class="text-2xl font-semibold">Subscribe to our newsletter</h2>
+    <form @submit.prevent="submitNewsletter" class="flex justify-center max-w-md mx-auto space-x-2">
+      <input
+        v-model="newsletterEmail"
+        type="email"
+        placeholder="Enter your email"
+        required
+        class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+      />
+      <button
+        type="submit"
+        class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition"
+      >Submit</button>
+    </form>
+    <h2 v-if="newsletterSubmitted" class="text-green-600 font-semibold mt-4">Thank you!</h2>
+  </div>
+</footer>
