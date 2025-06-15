@@ -319,8 +319,31 @@
                     title: "Electronic Devices",
                     src: "images/gadgets.webp"
                   }
+                ],
+                mainCategories: [
+                  {
+                    id: 1,
+                    name: "Clothings",
+                    slug: "clothing",
+                    image: "images/clothingCategory.jpg",
+                    itemCount: 128
+                  },
+                  {
+                    id: 2,
+                    name: "Home Appliances",
+                    slug: "appliances",
+                    image: "images/appliancesCategory.jpg",
+                    itemCount: 45
+                  },
+                  {
+                    id: 3,
+                    name: "Electronic Devices",
+                    slug: "electronics",
+                    image: "images/gadgetCategory.jpg",
+                    itemCount: 73
+                  }
                 ]
-              };
+              }
             },
             methods: {
               nextSlide() {
@@ -329,9 +352,19 @@
               prevSlide() {
                 this.currentSlide =
                   (this.currentSlide - 1 + this.heroImages.length) % this.heroImages.length;
+              },
+              goToCategory(slug) {
+                //nagivation logic here
+                window.location.href = 'productlistpage.html?category=${slug}';
+              },
+              setTrendingCategory(category) {
+                this.trendingCategory = category;
+              },
+              goToProduct(id) {
+                window.location.href = 'productdetailpage.html?id=${id}';
               }
             }
-          }).mount('.hero-gallery');
+          }).mount('#app');
 
     </script>
 </body>
