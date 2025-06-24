@@ -105,12 +105,11 @@
             </nav>
         </header>
     
-<main class="max-w-7xl mx-auto px-4 py-8 space-y-16"></main>
+<main class="max-w-7xl mx-auto px-4 py-5 space-y-16"></main>
   <!-- Category Title and Description -->
   <section class="text-center flex flex-col items-center justify-center">
-    <h1 class="text-2xl font-semibold mb-2">CATEGORIES </h1>
-    <h2 class="text-xl font-semibold mb-2"> CLOTHES</h2>
-    <p class="text-gray-700 max-w-xl">
+    <h1 class="text-3xl font-bold text-black-600 hover:text-purple-700 transition" style="font-family: 'Playfair Display', serif;"> CLOTHES</h1>
+    <p class="text-gray-700 max-w-2xl p-3">
         Your go-to wardrobe essentials, from classic shirts and elegant dresses to casual tees and cozy knits, 
         <span class="font-semibold">Veloura</span> has got you covered. It’s time to elevate your style—what are you waiting for?
     </p>
@@ -154,39 +153,11 @@
       </template>
     </div>
 
-    <!-- Filter / Sort Sidebar -->
-    <aside class="w-full lg:w-64 p-4 border rounded-lg">
-      <h2 class="text-xl font-semibold mb-4">Filter / Sort</h2>
-      <div>
-        <label class="block mb-2 font-medium" for="sort">Sort by:</label>
-        <select id="sort" v-model="maleSort" class="w-full border rounded px-3 py-2">
-          <option value="nameAsc">Name: A to Z</option>
-          <option value="nameDesc">Name: Z to A</option>
-          <option value="priceAsc">Price: Low to High</option>
-          <option value="priceDesc">Price: High to Low</option>
-        </select>
-      </div>
-      <div class="mt-6">
-        <label class="block mb-2 font-medium">Filter by color:</label>
-        <div class="flex flex-wrap gap-2">
-          <button
-            v-for="color in availableColors"
-            :key="color"
-            @click="toggleColorFilter(color)"
-            :class="[
-              'w-6 h-6 rounded-full border',
-              colorFilter.includes(color) ? 'border-black' : 'border-gray-300'
-            ]"
-            :style="{ backgroundColor: color }"
-            :title="color"
-          ></button>
-        </div>
-      </div>
-    </aside>
   </section>
 <div class="h-px bg-gray-300 mt-8 w-full"></div>
+
   <!-- Subcategory: Women -->
-  <section>
+  <!-- <section>
     <h2 class="text-2xl text-center font-semibold mb-6">WOMEN SECTION</h2>
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <template v-for="product in womenProducts" :key="product.id">
@@ -202,7 +173,7 @@
     :alt="product.name + ' alternate view'"
     class="w-full h-full object-cover relative"
   />
-</a>
+        </a>
 
           <div class="mt-4">
             <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
@@ -216,10 +187,10 @@
         </div>
       </template>
     </div>
-  </section>
+  </section> -->
 
   <!-- Subcategory: Kids -->
-  <section>
+  <!-- <section>
     <h2 class="text-2xl font-semibold mb-6">KIDS SECTION</h2>
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <template v-for="product in kidsProducts" :key="product.id">
@@ -239,7 +210,7 @@
         </div>
       </template>
     </div>
-  </section>
+  </section> -->
 
 </main>
 
