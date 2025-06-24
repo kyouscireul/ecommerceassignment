@@ -310,6 +310,7 @@
           createApp({
             data() {
               return {
+                
                 currentSlide: 0,
                 heroImages: [
                   {
@@ -465,6 +466,7 @@
                       ]
                     },
                     trendingCategory: 'clothes' // Default category
+
               }
             },
             computed: {
@@ -490,10 +492,15 @@
               goToProduct(id) {
                 window.location.href = 'productdetailpage.html?id=${id}';
               }
-            }
+            },
+
+
           }).mount('#app');
 
           src="data/products.js"
+
+          
+
     </script>
 </body>
 </html>
