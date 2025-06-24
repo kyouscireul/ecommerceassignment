@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloura - Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+</head>
+<body class="bg-gray-50">
+    <div id="app">
+        <!-- Header with Navigation -->
+        <header class="bg-white shadow-lg sticky top-0 z-50">
+            <nav class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                       <a href="index.html" class="text-3xl font-bold text-black-600 hover:text-purple-700 transition" style="font-family: 'Playfair Display', serif;">
+                          Veloura
+                        </a>
+
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            TRENDING
+                        </a>
+                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            CATEGORIES
+                        </a>
+                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            JOIN US
+                        </a>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                        <div class="relative w-full">
+                            <input 
+                                v-model="searchQuery" 
+                                type="text" 
+                                placeholder="Search products..." 
+                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
+                            >
+                        <button 
+                            @click="performSearch"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition"
+                            >
+                            <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+
+                        </div>
+                    </div>
+
+                    <!-- User Actions -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            LOGIN
+                        </a>
+                        <span class="text-gray-400">|</span>
+                        <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                            SIGNUP
+                        </a>
+                        <a href="wishlist.html" class="text-gray-700 hover:text-black-600 transition relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                            <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
+                        </a>
+                        <a href="cart.html" class="text-gray-700 hover:text-purple-600 transition relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"/>
+                            </svg>
+                            <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button @click="toggleMobileMenu" class="lg:hidden ml-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div v-show="showMobileMenu" class="lg:hidden py-4 border-t">
+                    <div class="flex flex-col space-y-4">
+                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-purple-600">Trending</a>
+                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600">Categories</a>
+                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-purple-600">Join Us</a>
+                        <!-- Mobile Search -->
+                        <div class="flex mt-4">
+                            <input v-model="searchQuery" type="text" placeholder="Search..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <button @click="performSearch" class="bg-purple-600 text-white px-4 py-2 rounded-r-md hover:bg-purple-700">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    
+<main class="max-w-7xl mx-auto px-4 py-8 space-y-16"></main>
+  <!-- Category Title and Description -->
+  <section class="text-center flex flex-col items-center justify-center">
+    <h1 class="text-2xl font-semibold mb-2">CATEGORIES </h1>
+    <h2 class="text-xl font-semibold mb-2"> CLOTHES</h2>
+    <p class="text-gray-700 max-w-xl">
+        Your go-to wardrobe essentials, from classic shirts and elegant dresses to casual tees and cozy knits, 
+        <span class="font-semibold">Veloura</span> has got you covered. It’s time to elevate your style—what are you waiting for?
+    </p>
+</section>
+
+<div class="h-px bg-gray-300 mt-8 w-full"></div>
+
+
+  <!-- Subcategory: Male -->
+   <h2 class="text-2xl font-semibold mb-6">MEN SECTION</h2>
+  <section class="flex flex-col lg:flex-row gap-8">
+    <!-- Product Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-1">
+      <template v-for="product in maleProducts" :key="product.id">
+        <div class="border rounded-lg p-4 group cursor-pointer">
+          <!-- Product image with hover swap -->
+         <a :href="`product-detail.html?id=${product.id}`" class="block relative overflow-hidden rounded-md h-48">
+  <img
+    :src="product.images[0]"
+    :alt="product.name"
+    class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 absolute top-0 left-0"
+  />
+  <img
+    :src="product.images[1]"
+    :alt="product.name + ' alternate view'"
+    class="w-full h-full object-cover transition-opacity duration-300 relative"
+  />
+</a>
+
+          <div class="mt-4">
+            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
+            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
+            <!-- Color dots -->
+            <div class="flex space-x-1 mt-2">
+              <template v-for="color in product.colors" :key="color">
+                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- Filter / Sort Sidebar -->
+    <aside class="w-full lg:w-64 p-4 border rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">Filter / Sort</h2>
+      <div>
+        <label class="block mb-2 font-medium" for="sort">Sort by:</label>
+        <select id="sort" v-model="maleSort" class="w-full border rounded px-3 py-2">
+          <option value="nameAsc">Name: A to Z</option>
+          <option value="nameDesc">Name: Z to A</option>
+          <option value="priceAsc">Price: Low to High</option>
+          <option value="priceDesc">Price: High to Low</option>
+        </select>
+      </div>
+      <div class="mt-6">
+        <label class="block mb-2 font-medium">Filter by color:</label>
+        <div class="flex flex-wrap gap-2">
+          <button
+            v-for="color in availableColors"
+            :key="color"
+            @click="toggleColorFilter(color)"
+            :class="[
+              'w-6 h-6 rounded-full border',
+              colorFilter.includes(color) ? 'border-black' : 'border-gray-300'
+            ]"
+            :style="{ backgroundColor: color }"
+            :title="color"
+          ></button>
+        </div>
+      </div>
+    </aside>
+  </section>
+<div class="h-px bg-gray-300 mt-8 w-full"></div>
+  <!-- Subcategory: Women -->
+  <section>
+    <h2 class="text-2xl text-center font-semibold mb-6">WOMEN SECTION</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <template v-for="product in womenProducts" :key="product.id">
+        <div class="border rounded-lg p-4 cursor-pointer">
+          <a :href="`product-detail.html?id=${product.id}`" class="block relative overflow-hidden rounded-md h-48 group">
+  <img
+    :src="product.images[0]"
+    :alt="product.name"
+    class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0"
+  />
+  <img
+    :src="product.images[1]"
+    :alt="product.name + ' alternate view'"
+    class="w-full h-full object-cover relative"
+  />
+</a>
+
+          <div class="mt-4">
+            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
+            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
+            <div class="flex space-x-1 mt-2">
+              <template v-for="color in product.colors" :key="color">
+                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <!-- Subcategory: Kids -->
+  <section>
+    <h2 class="text-2xl font-semibold mb-6">KIDS SECTION</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <template v-for="product in kidsProducts" :key="product.id">
+        <div class="border rounded-lg p-4 cursor-pointer">
+          <a :href="`product-detail.html?id=${product.id}`" class="block overflow-hidden rounded-md">
+            <img :src="product.images[0]" :alt="product.name" class="w-full h-48 object-cover" />
+          </a>
+          <div class="mt-4">
+            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
+            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
+            <div class="flex space-x-1 mt-2">
+              <template v-for="color in product.colors" :key="color">
+                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+
+</main>
+
+        <!-- Footer -->
+        <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <!-- Horizontal Subscription Section -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-12 pb-12 border-b border-gray-300">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                        <h2 class="text-3xl font-bold mb-2">Stay Updated</h2>
+                        <h3 class="text-xl text-gray-600">Subscribe to our newsletter</h3>
+                    </div>
+                    
+                    <div class="md:w-1/2 w-full">
+                        <div v-if="!subscribed" class="flex">
+                            <input 
+                                v-model="email" 
+                                type="email" 
+                                placeholder="Enter your email" 
+                                class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                @keyup.enter="subscribe"
+                            >
+                            <button 
+                                @click="subscribe" 
+                                :disabled="!email || subscribing"
+                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                                Submit
+                            </button>
+                        </div>
+                        <!-- <div v-else class="text-center md:text-left">
+                            <h2 class="text-2xl font-bold text-green-600 mb-2">Thank you!</h2>
+                            <p class="text-gray-600">You've successfully subscribed to our newsletter.</p>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Horizontal Footer Links -->
+                <div class="flex flex-col md:flex-row justify-between gap-8">
+                    <div class="md:w-2/4">
+                        <h4 class="text-3xl font-bold text-black-600 hover:text-purple-700 transition mb-3 " style="font-family: 'Playfair Display', serif;">Veloura</h4>
+                        <p class="text-gray-600">Discover the latest trends in fashion, technology, and home essentials.</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <h4 class="font-bold text-lg mb-2">Quick Links</h4>
+                        <ul class="grid grid-cols-2 gap-2 text-gray-600">
+                            <li><a href="index.html" class="hover:text-purple-600 transition">Home</a></li>
+                            <li><a href="productlistpage.html" class="hover:text-purple-600 transition">Products</a></li>
+                            <li><a href="cart.html" class="hover:text-purple-600 transition">Cart</a></li>
+                            <li><a href="status.html" class="hover:text-purple-600 transition">Orders</a></li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/3">
+                        <h4 class="font-bold text-lg mb-2">Contact</h4>
+                        <ul class="grid space-y-1 text-gray-600">
+                            <li>support@veloura.com</li>
+                            <li>+1 (555) 123-4567</li>
+                            <li>@velouraecommerce</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-12 p-5 border-t border-gray-300 text-center text-gray-600">
+                    <p>&copy; 2025 Veloura. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+<!-- Vue app -->
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      searchQuery: '',
+      showLogin: false,
+      showSignup: false,
+      wishlistCount: 0,
+      cartCount: 0,
+      showMobileMenu: false,
+      maleSort: 'nameAsc',
+      colorFilter: [],
+      newsletterEmail: '',
+      newsletterSubmitted: false,
+
+      availableColors: ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00'], // example colors
+
+      maleProducts: [
+        {
+          id: 1,
+          name: 'Shirt Black Shine',
+          price: 393.00,
+          images: ['images/men_jacket.jpg', 'images/men_jacket2.jpg'],
+          colors: ['#000000', '#FFFFFF', '#FF0000']
+        },
+        
+         {
+          id: 2,
+          name: 'Shirt Blue Shine',
+          price: 90.00,
+          images: ['images/men_jacket.jpg', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
+          colors: ['#000000', '#FFFFFF', '#FF0000']
+        },
+        
+         {
+          id: 3,
+          name: 'Shirt Black Shine',
+          price: 393.00,
+          images: ['https://via.placeholder.com/300x400?text=Shirt+Front', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
+          colors: ['#000000', '#FFFFFF', '#FF0000']
+        },
+       
+         {
+          id: 4,
+          name: 'Shirt Black Shine',
+          price: 393.00,
+          images: ['https://via.placeholder.com/300x400?text=Shirt+Front', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
+          colors: ['#000000', '#FFFFFF', '#FF0000']
+        },
+        // add more products here..
+      ],
+      
+
+      womenProducts: [
+        {
+          id: 10,
+          name: 'Elegant Dress',
+          price: 549.00,
+          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
+          colors: ['#FF69B4', '#000000']
+        },
+        // add more products here...
+        {
+          id: 11,
+          name: 'Elegant Dress',
+          price: 549.00,
+          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
+          colors: ['#FF69B4', '#000000']
+        },
+        {
+          id: 12,
+          name: 'Elegant Dress',
+          price: 549.00,
+          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
+          colors: ['#FF69B4', '#000000']
+        },
+        {
+          id: 13,
+          name: 'Elegant Dress',
+          price: 549.00,
+          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
+          colors: ['#FF69B4', '#000000']
+        },
+      ],
+
+      kidsProducts: [
+        {
+          id: 20,
+          name: 'Kids Tee',
+          price: 120.00,
+          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
+          colors: ['#00FFFF', '#FF4500']
+        },
+        {
+          id: 21,
+          name: 'Kids Tee',
+          price: 120.00,
+          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
+          colors: ['#00FFFF', '#FF4500']
+        },
+        {
+          id: 22,
+          name: 'Kids Tee',
+          price: 120.00,
+          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
+          colors: ['#00FFFF', '#FF4500']
+        },
+        {
+          id: 23,
+          name: 'Kids Tee',
+          price: 120.00,
+          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
+          colors: ['#00FFFF', '#FF4500']
+        },
+        // add more products here...
+      ],
+    }
+  },
+  methods: {
+    scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    },
+    performSearch() {
+      alert(`Search for: ${this.searchQuery}`);
+      // Implement real search logic here
+    },
+    toggleMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu;
+    },
+    toggleColorFilter(color) {
+      if (this.colorFilter.includes(color)) {
+        this.colorFilter = this.colorFilter.filter(c => c !== color);
+      } else {
+        this.colorFilter.push(color);
+      }
+      // Optionally, filter maleProducts here based on selected colors
+    },
+    submitNewsletter() {
+      if(this.newsletterEmail) {
+        this.newsletterSubmitted = true;
+        this.newsletterEmail = '';
+      }
+    }
+  },
+  computed: {
+    filteredMaleProducts() {
+      let filtered = this.maleProducts;
+
+      if(this.colorFilter.length) {
+        filtered = filtered.filter(product =>
+          product.colors.some(color => this.colorFilter.includes(color))
+        );
+      }
+
+      switch(this.maleSort) {
+        case 'nameAsc':
+          filtered = filtered.sort((a,b) => a.name.localeCompare(b.name));
+          break;
+        case 'nameDesc':
+          filtered = filtered.sort((a,b) => b.name.localeCompare(a.name));
+          break;
+        case 'priceAsc':
+          filtered = filtered.sort((a,b) => a.price - b.price);
+          break;
+        case 'priceDesc':
+          filtered = filtered.sort((a,b) => b.price - a.price);
+          break;
+      }
+
+      return filtered;
+    }
+  },
+  watch: {
+    maleSort() {
+      // Re-sort filteredMaleProducts when sort option changes
+    },
+    colorFilter() {
+      // Re-filter when color filter changes
+    }
+  }
+}).mount('#app');
+</script>
