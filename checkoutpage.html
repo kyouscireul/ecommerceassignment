@@ -177,7 +177,22 @@
     <!-- Shipping Method -->
     <section>
         <h2 class="text-2xl font-semibold mb-2">Shipping Method</h2>
-        <p class="text-gray-600">Enter your shipping address to view available shipping methods.</p>
+        <div class="space-y-2 mt-4">
+            <label class="flex items-center gap-2 p-3 border border-gray-300 rounded cursor-pointer">
+                <input type="radio" name="shipping" checked class="mr-2">
+                <div>
+                    <p class="font-medium">Standard Shipping</p>
+                    <p class="text-sm text-gray-600">3-5 business days — RM 4.99</p>
+                </div>
+            </label>
+            <label class="flex items-center gap-2 p-3 border border-gray-300 rounded cursor-pointer">
+                <input type="radio" name="shipping" class="mr-2">
+                <div>
+                    <p class="font-medium">Express Shipping</p>
+                    <p class="text-sm text-gray-600">1-2 business days — RM 9.99</p>
+                </div>
+            </label>
+        </div>
     </section>
 
     <!-- Payment Info -->
@@ -218,28 +233,31 @@
         </form>
     </section>
 
-    <!-- Order Summary KENE UBAH JD REACTIVE VUE JS PUNYA VALUE-->
+    <!-- Order Summary KENE UBAH JD REACTIVE VUE JS PUNYA + connected ke cartpage-->
     <section>
-        <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
-        <div class="space-y-4">
-            <div class="flex items-center gap-4">
-                <img src="product1.jpg" alt="XAMI - COFFEE" class="w-20 h-20 object-cover rounded">
-                <p>XAMI - COFFEE ×5 — RM 253.00</p>
+        <div class="md:sticky md:top-20">
+            <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4">
+                    <img src="product1.jpg" alt="XAMI - COFFEE" class="w-20 h-20 object-cover rounded">
+                    <p>XAMI - COFFEE ×5 — RM 253.00</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <img src="product2.jpg" alt="OCEANE - BLACK" class="w-20 h-20 object-cover rounded">
+                    <p>OCEANE - BLACK ×5 — RM 394.00</p>
+                </div>
+                <a href="cartpage.html" class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition w-full md:w-auto">Edit Cart</a>
+                <div class="text-right space-y-2 mt-4">
+                    <p>Subtotal: <strong>RM 647.00</strong></p>
+                    <p>Shipping: <em>Enter shipping address</em></p>
+                    <p class="text-xl font-bold">Total: MYR RM 647.00</p>
+                </div>
             </div>
-            <div class="flex items-center gap-4">
-                <img src="product2.jpg" alt="OCEANE - BLACK" class="w-20 h-20 object-cover rounded">
-                <p>OCEANE - BLACK ×5 — RM 394.00</p>
+            <div class="mt-8 text-center">
+                <button class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition w-full md:w-auto">
+                    Place Order
+                </button>
             </div>
-            <div class="text-right space-y-2 mt-4">
-                <p>Subtotal: <strong>RM 647.00</strong></p>
-                <p>Shipping: <em>Enter shipping address</em></p>
-                <p class="text-xl font-bold">Total: MYR RM 647.00</p>
-            </div>
-        </div>
-        <div class="mt-8 text-center">
-            <button class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition w-full md:w-auto">
-                Place Order
-            </button>
         </div>
     </section>
     <!-- Footer -->
