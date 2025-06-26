@@ -55,7 +55,7 @@
     createApp({
       data() {
         return {
-          cart: [
+          cart: JSON.parse(localStorage.getItem('cart')) || [
             {
               id: 1,
               name: "Cardigan",
@@ -83,15 +83,25 @@
       methods: {
         increaseQty(index) {
           this.cart[index].qty++;
+          this.saveCart();
         },
         decreaseQty(index) {
-          if (this.cart[index].qty > 1) this.cart[index].qty--;
+          if (this.cart[index].qty > 1) {
+            this.cart[index].qty--;
+            this.saveCart();
+          }
         },
         removeItem(index) {
           this.cart.splice(index, 1);
+          this.saveCart();
         },
-        closeCart() {
-          alert("Cart closed");
+        saveCart() {
+          localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+        checkout() {
+          // Save cart before navigating
+          this.saveCart();
+          window.location.href = 'checkoutpage.html';
         }
       }
     }).mount("#app");
