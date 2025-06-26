@@ -7,13 +7,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 </head>
 <body class="bg-white text-gray-800">
   <div id="app">
 
     <!-- Header -->
-<header class="bg-white shadow-lg sticky top-0 z-50">
+        <header class="bg-white shadow-lg sticky top-0 z-50">
             <nav class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between items-center py-4">
                     <!-- Logo -->
@@ -29,7 +29,7 @@
                         <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-black-600 transition font-medium">
                             TRENDING
                         </a>
-                        <a href="productlistpage.html" @click="scrollToSection('categories')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-black-600 transition font-medium">
                             CATEGORIES
                         </a>
                         <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
@@ -94,7 +94,7 @@
                 <div v-show="showMobileMenu" class="lg:hidden py-4 border-t">
                     <div class="flex flex-col space-y-4">
                         <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-purple-600">Trending</a>
-                        <a href="productlistpage.html" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600">Categories</a>
+                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600">Categories</a>
                         <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-purple-600">Join Us</a>
                         <!-- Mobile Search -->
                         <div class="flex mt-4">
@@ -107,39 +107,49 @@
         </header>
 
     <!-- Product Section -->
-    <section class="container mx-auto grid md:grid-cols-2 gap-8 px-4 py-8">
-      <!-- Product Images -->
-      <div>
-        <img src="https://via.placeholder.com/500x500" alt="Main Product" class="rounded mb-4">
-        <div class="grid grid-cols-3 gap-2">
-          <img src="https://via.placeholder.com/150" alt="Gallery 1" class="rounded">
-          <img src="https://via.placeholder.com/150" alt="Gallery 2" class="rounded">
-          <img src="https://via.placeholder.com/150" alt="Gallery 3" class="rounded">
-        </div>
+<section id="app" class="container mx-auto grid md:grid-cols-2 gap-8 px-4 py-8">
+  <!-- Product Images -->
+  <div>
+    <!-- Main Image -->
+    <img :src="activeImage" alt="Main Product" class="rounded mb-4 w-full h-auto max-h-[500px] object-cover">
+
+    <!-- Thumbnail Gallery -->
+    <div class="grid grid-cols-3 gap-2">
+      <img
+        v-for="(img, index) in productImages"
+        :key="index"
+        :src="img"
+        :alt="'Gallery image ' + (index + 1)"
+        class="rounded cursor-pointer border-2"
+        :class="{ 'border-pink-600': activeImage === img, 'border-transparent': activeImage !== img }"
+        @click="activeImage = img"
+        style="width: 100%; height: 250px"
+      >
+    </div>
+  </div>
+
+  <!-- Product Details -->
+  <div>
+    <h1 class="text-3xl font-semibold mb-2">Classic Lace Dress</h1>
+    <p class="text-lg text-pink-600 font-bold mb-2">RM229.00 MYR</p>
+    <p class="text-sm text-gray-500 mb-2">★★★★★ (34 reviews)</p>
+    <p class="text-sm mb-4">Elegant lace dress perfect for tea parties, formal gatherings, and vintage-themed photoshoots.</p>
+
+    <div class="mb-4">
+      <p class="font-semibold mb-1">Size</p>
+      <div class="space-x-2">
+        <button class="border px-3 py-1 rounded">S</button>
+        <button class="border px-3 py-1 rounded">M</button>
+        <button class="border px-3 py-1 rounded">L</button>
+        <button class="border px-3 py-1 rounded">XL</button>
       </div>
+    </div>
 
-      <!-- Product Details -->
-      <div>
-        <h1 class="text-3xl font-semibold mb-2">Classic Lace Dress</h1>
-        <p class="text-lg text-pink-600 font-bold mb-2">RM229.00 MYR</p>
-        <p class="text-sm text-gray-500 mb-2">★★★★★ (34 reviews)</p>
-        <p class="text-sm mb-4">Elegant lace dress perfect for tea parties, formal gatherings, and vintage-themed photoshoots.</p>
-
-        <div class="mb-4">
-          <p class="font-semibold mb-1">Size</p>
-          <div class="space-x-2">
-            <button class="border px-3 py-1 rounded">S</button>
-            <button class="border px-3 py-1 rounded">M</button>
-            <button class="border px-3 py-1 rounded">L</button>
-            <button class="border px-3 py-1 rounded">XL</button>
-          </div>
-        </div>
-
-        <button class="bg-black text-white px-6 py-3 mt-4 rounded hover:bg-gray-900">
-          Add to Cart
-        </button>
-      </div>
-    </section>
+    <button class="bg-[#8B4513] text-white px-6 py-3 mt-4 rounded hover:bg-[#7a3e10] transition">
+      Add to Cart
+    </button>
+  </div>
+</section>
 
     <!-- Overview Section -->
     <section class="container mx-auto px-4 py-10">
@@ -152,15 +162,15 @@
       <h2 class="text-xl font-semibold mb-6">Recommended for You</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 1" class="rounded mb-2">
+          <img src="images/test.jpg" alt="Rec 1" class="rounded mb-2">
           <h3 class="text-sm">ALBERT EARRINGS – RM59.00</h3>
         </div>
         <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 2" class="rounded mb-2">
+          <img src="images/test.jpg" alt="Rec 2" class="rounded mb-2">
           <h3 class="text-sm">DOLL-LACE DRESS – RM209.00</h3>
         </div>
         <div>
-          <img src="https://via.placeholder.com/300x450" alt="Rec 3" class="rounded mb-2">
+          <img src="images/test.jpg" alt="Rec 3" class="rounded mb-2">
           <h3 class="text-sm">MILKY EARRINGS – RM69.00</h3>
         </div>
       </div>
@@ -173,7 +183,7 @@
         <p class="text-sm">5.0 ★★★★★ based on 12 reviews</p>
       </div>
       <textarea placeholder="Write a review..." class="w-full border rounded p-2 mb-4"></textarea>
-      <button class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Submit Review</button>
+      <button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-pink-700">Submit Review</button>
     </section>
 
     <!-- Footer / Join Us -->
@@ -199,7 +209,7 @@
                             <button 
                                 @click="subscribe" 
                                 :disabled="!email || subscribing"
-                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
                                 Submit
                             </button>
                         </div>
@@ -248,10 +258,20 @@
     createApp({
       data() {
         return {
-          cartCount: 0
+          cartCount: 0,
+
+          productImages: [
+        'images/kitchen.png',
+        'images/test.jpg',
+        'images/test.jpg'
+        ],
+        activeImage: 'images/test.jpg'
+
+
         };
       }
     }).mount('#app');
   </script>
 </body>
 </html>
+>
