@@ -484,7 +484,13 @@
               },
               goToCategory(slug) {
                 //nagivation logic here
-                window.location.href = 'productlistpage.html?category=${slug}';
+                if (slug === 'clothing') {
+                    window.location.href = 'listclothes.html';
+                  } else if (slug === 'electronics') {
+                    window.location.href = 'listgadgets.html';
+                  } else if (slug === 'appliances') {
+                    window.location.href = 'listappliances.html';
+                  }
               },
               setTrendingCategory(category) {
                 this.trendingCategory = category;
