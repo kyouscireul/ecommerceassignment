@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloura - Home</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloura - Shop</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
+
+
 <body class="bg-gray-50">
     <div id="app">
         <!-- Header with Navigation -->
@@ -104,146 +105,167 @@
                 </div>
             </nav>
         </header>
-    
-<main class="max-w-7xl mx-auto px-4 py-8 space-y-16"></main>
-  <!-- Category Title and Description -->
-  <section class="text-center flex flex-col items-center justify-center">
-    <h1 class="text-2xl font-semibold mb-2">CATEGORIES </h1>
-    <h2 class="text-xl font-semibold mb-2"> CLOTHES</h2>
-    <p class="text-gray-700 max-w-xl">
-        Your go-to wardrobe essentials, from classic shirts and elegant dresses to casual tees and cozy knits, 
-        <span class="font-semibold">Veloura</span> has got you covered. It’s time to elevate your style—what are you waiting for?
-    </p>
-</section>
 
-<div class="h-px bg-gray-300 mt-8 w-full"></div>
+<div id="app" class="max-w-7xl mx-auto p-4">
+  <h1 class="text-3xl font-bold mb-6">Shop</h1>
 
-
-  <!-- Subcategory: Male -->
-   <h2 class="text-2xl font-semibold mb-6">MEN SECTION</h2>
-  <section class="flex flex-col lg:flex-row gap-8">
-    <!-- Product Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-1">
-      <template v-for="product in maleProducts" :key="product.id">
-        <div class="border rounded-lg p-4 group cursor-pointer">
-          <!-- Product image with hover swap -->
-         <a :href="`product-detail.html?id=${product.id}`" class="block relative overflow-hidden rounded-md h-48">
-  <img
-    :src="product.images[0]"
-    :alt="product.name"
-    class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 absolute top-0 left-0"
-  />
-  <img
-    :src="product.images[1]"
-    :alt="product.name + ' alternate view'"
-    class="w-full h-full object-cover transition-opacity duration-300 relative"
-  />
-</a>
-
-          <div class="mt-4">
-            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
-            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
-            <!-- Color dots -->
-            <div class="flex space-x-1 mt-2">
-              <template v-for="color in product.colors" :key="color">
-                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
-              </template>
-            </div>
-          </div>
-        </div>
-      </template>
-    </div>
-
-    <!-- Filter / Sort Sidebar -->
-    <aside class="w-full lg:w-64 p-4 border rounded-lg">
-      <h2 class="text-xl font-semibold mb-4">Filter / Sort</h2>
+  <div class="flex gap-6">
+    <aside class="w-1/6 space-y-6 border border-gray-200 p-4 rounded bg-white">
       <div>
-        <label class="block mb-2 font-medium" for="sort">Sort by:</label>
-        <select id="sort" v-model="maleSort" class="w-full border rounded px-3 py-2">
-          <option value="nameAsc">Name: A to Z</option>
-          <option value="nameDesc">Name: Z to A</option>
-          <option value="priceAsc">Price: Low to High</option>
-          <option value="priceDesc">Price: High to Low</option>
+        <h2 class="font-semibold mb-2">Category</h2>
+        <div class="space-y-1">
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="" class="mr-2"> All</label>
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="kitchen" class="mr-2"> Kitchen Appliances</label>
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="garden" class="mr-2"> Gardening Tools</label>
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="clean" class="mr-2"> Cleaning Appliances</label>
+        </div>
+      </div>
+      <div>
+        <h2 class="font-semibold mb-2">Color</h2>
+        <div class="flex flex-wrap gap-2">
+          <span v-for="color in availableColors" :key="color" :style="{backgroundColor: color}" @click="toggleColorFilter(color)" class="w-6 h-6 rounded-full border-2 cursor-pointer" :class="colorFilter.includes(color) ? 'ring-2 ring-purple-600' : ''"></span>
+        </div>
+      </div>
+      <div>
+        <h2 class="font-semibold mb-2">Size</h2>
+        <div class="flex flex-wrap gap-2">
+          <button v-for="size in availableSizes" :key="size" @click="toggleSizeFilter(size)" class="px-3 py-1 border rounded" :class="sizeFilter.includes(size) ? 'bg-purple-600 text-white' : ''">{{ size }}</button>
+        </div>
+      </div>
+      <div>
+        <h2 class="font-semibold mb-2">Sort by Price</h2>
+        <select v-model="priceSort" class="w-full border border-gray-300 px-3 py-1 rounded">
+          <option value="">Default</option>
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
         </select>
       </div>
-      <div class="mt-6">
-        <label class="block mb-2 font-medium">Filter by color:</label>
-        <div class="flex flex-wrap gap-2">
-          <button
-            v-for="color in availableColors"
-            :key="color"
-            @click="toggleColorFilter(color)"
-            :class="[
-              'w-6 h-6 rounded-full border',
-              colorFilter.includes(color) ? 'border-black' : 'border-gray-300'
-            ]"
-            :style="{ backgroundColor: color }"
-            :title="color"
-          ></button>
-        </div>
-      </div>
     </aside>
-  </section>
-<div class="h-px bg-gray-300 mt-8 w-full"></div>
-  <!-- Subcategory: Women -->
-  <section>
-    <h2 class="text-2xl text-center font-semibold mb-6">WOMEN SECTION</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <template v-for="product in womenProducts" :key="product.id">
-        <div class="border rounded-lg p-4 cursor-pointer">
-          <a :href="`product-detail.html?id=${product.id}`" class="block relative overflow-hidden rounded-md h-48 group">
-  <img
-    :src="product.images[0]"
-    :alt="product.name"
-    class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0"
-  />
-  <img
-    :src="product.images[1]"
-    :alt="product.name + ' alternate view'"
-    class="w-full h-full object-cover relative"
-  />
-</a>
 
-          <div class="mt-4">
-            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
-            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
-            <div class="flex space-x-1 mt-2">
-              <template v-for="color in product.colors" :key="color">
-                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
-              </template>
+    <div class="flex-1 space-y-12">
+      <section>
+        <div class="border-t border-gray-300 pt-8 mt-8">
+  
+        <section>
+  <h2 class="text-2xl font-semibold mb-4">Kitchen Appliances</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div 
+      v-for="product in filteredProducts.filter(p => p.category === 'kitchen').slice(0, sectionLimits.kitchen)"
+      :key="product.id" 
+      class="border rounded p-4 group cursor-pointer"
+    >
+      <div class="relative overflow-hidden rounded h-48 mb-4">
+        <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0">
+        <img :src="product.images[1]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
+        <img v-if="product.images[2]" :src="product.images[2]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
+        <img v-if="product.images[3]" :src="product.images[3]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
+         <img v-if="product.images[4]" :src="product.images[4]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
+      </div>
+      <h3 class="font-semibold">{{ product.name }}</h3>
+      <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+      <div class="flex gap-1 mt-2">
+        <span 
+          v-for="color in product.colors" 
+          :key="color" 
+          :style="{backgroundColor: color}" 
+          class="w-4 h-4 rounded-full border"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEE MORE BUTTON OUTSIDE THE LOOP -->
+  <div class="mt-4 text-center">
+    <button 
+      v-if="filteredProducts.filter(p => p.category === 'kitchen').length > sectionLimits.kitchen"
+      @click="sectionLimits.kitchen += 4"
+      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition"
+    >
+      See More
+    </button>
+  </div>
+</section>
+
+
+       
+<div class="border-t border-gray-300 pt-8 mt-8"></div>
+      <section>
+         
+  <h2 class="text-2xl font-semibold mb-4">Gardening Tools</h2>
+
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div 
+      v-for="product in filteredProducts.filter(p => p.category === 'garden').slice(0, sectionLimits.garden)" 
+      :key="product.id" 
+      class="border rounded p-4 group cursor-pointer"
+    >
+      <div class="relative overflow-hidden rounded h-48 mb-4">
+        <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0">
+        <img :src="product.images[1]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
+        <img v-if="product.images[2]" :src="" class="w-full h-full object-cover relative">
+        <img v-if="product.images[3]" :src="" class="w-full h-full object-cover relative">
+        <img v-if="product.images[4]" :src="" class="w-full h-full object-cover relative">
+      </div>
+      <h3 class="font-semibold">{{ product.name }}</h3>
+      <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+      <div class="flex gap-1 mt-2">
+        <span 
+          v-for="color in product.colors" 
+          :key="color" 
+          :style="{ backgroundColor: color }" 
+          class="w-4 h-4 rounded-full border"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- See More Button -->
+  <div class="mt-4">
+    <button 
+      v-if="filteredProducts.filter(p => p.category === 'garden').length > sectionLimits.garden"
+      @click="sectionLimits.garden += 4"
+      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition mx-auto block"
+    >
+      See More
+    </button>
+  </div>
+</section>
+
+<div class="border-t border-gray-300 pt-8 mt-8"></div>
+      <section>
+        <h2 class="text-2xl font-semibold mb-4">Cleaning Appliances</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div v-for="product in filteredProducts.filter(p => p.category === 'clean').slice(0, sectionLimits.clean)" :key="product.id" class="border rounded p-4 group cursor-pointer">
+            <div class="relative overflow-hidden rounded h-48 mb-4">
+              <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover">
+               <img :src="product.images[1]" :alt="product.name" class="w-full h-full object-cover">
+                <img :src="product.images[2]" :alt="product.name" class="w-full h-full object-cover">
+                 <img :src="product.images[3]" :alt="product.name" class="w-full h-full object-cover">
+                 <img :src="product.images[4]" :alt="product.name" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-semibold">{{ product.name }}</h3>
+            <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+            <div class="flex gap-1 mt-2">
+              <span v-for="color in product.colors" :key="color" :style="{backgroundColor: color}" class="w-4 h-4 rounded-full border"></span>
             </div>
           </div>
         </div>
-      </template>
+         <!-- See More Button -->
+  <div class="mt-4">
+    <button 
+      v-if="filteredProducts.filter(p => p.category === 'clean').length > sectionLimits.clean"
+      @click="sectionLimits.clean += 4"
+      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition mx-auto block"
+    >
+      See More
+    </button>
+  </div>
+      </section>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- Subcategory: Kids -->
-  <section>
-    <h2 class="text-2xl font-semibold mb-6">KIDS SECTION</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <template v-for="product in kidsProducts" :key="product.id">
-        <div class="border rounded-lg p-4 cursor-pointer">
-          <a :href="`product-detail.html?id=${product.id}`" class="block overflow-hidden rounded-md">
-            <img :src="product.images[0]" :alt="product.name" class="w-full h-48 object-cover" />
-          </a>
-          <div class="mt-4">
-            <h3 class="font-semibold text-gray-900">{{ product.name }}</h3>
-            <p class="text-purple-700 font-semibold">MYR {{ product.price.toFixed(2) }}</p>
-            <div class="flex space-x-1 mt-2">
-              <template v-for="color in product.colors" :key="color">
-                <span :title="color" :class="`w-4 h-4 rounded-full border border-gray-300`" :style="{backgroundColor: color}"></span>
-              </template>
-            </div>
-          </div>
-        </div>
-      </template>
-    </div>
-  </section>
-
-</main>
-
-        <!-- Footer -->
+<!-- Footer -->
         <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
             <div class="max-w-7xl mx-auto px-4">
                 <!-- Horizontal Subscription Section -->
@@ -307,189 +329,76 @@
             </div>
         </footer>
 
-<!-- Vue app -->
 <script>
 const { createApp } = Vue;
 
 createApp({
   data() {
     return {
-      searchQuery: '',
-      showLogin: false,
-      showSignup: false,
-      wishlistCount: 0,
-      cartCount: 0,
-      showMobileMenu: false,
-      maleSort: 'nameAsc',
+      categoryFilter: '',
       colorFilter: [],
-      newsletterEmail: '',
-      newsletterSubmitted: false,
+      priceSort: '',
+      availableColors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],
+      sectionLimits: {
+  kitchen: 4,
+  garden: 4,
+  clean: 4
+},
 
-      availableColors: ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00'], // example colors
+      products: [
+        { id: 1, name: 'Airfryer', price: 100, images: ['KITCHEN/AIRFRYER.jpeg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], category: 'kitchen' },
+        { id: 2, name: 'Blender', price: 150, images: ['KITCHEN/BLENDER.jpeg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
+        { id: 3, name: 'B', price: 150, images: ['KITCHEN/TOASTER.webp', 'KITCHEN/TOASTER.webp'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], category: 'kitchen' },
+        { id: 4, name: 'Microwave', price: 150, images: ['KITCHEN/MICROWAVE.webp', 'images/whiteshirt.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
+        { id: 5, name: 'Men Shirt 5', price: 150, images: ['https://via.placeholder.com/300x400?text=Front', 'images/blazer.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
+        
+         { id: 6, name: 'Women Dress 1', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/floraldress.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
+         { id: 7, name: 'Women Dress 2', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/blazer.png'], colors: [ '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
+         { id: 8, name: 'Women Dress 3', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
+         { id: 9, name: 'Women Dress 4', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000',  '#8B4513', '	#FFF0F5'],  category: 'garden' },
+         { id: 10, name: 'Women Dress 5', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
+        
+         { id: 11, name: 'Kids Tee 1', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#FFF0F5'],  category: 'clean' },
+         { id: 12, name: 'Kids Tee 2', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', 	],  category: 'clean' },
+         { id: 13, name: 'Kids Tee 3', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'clean' },
+         { id: 14, name: 'Kids Tee 4', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'clean' },
+        { id: 15, name: 'Kids Tee 5', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513'],  category: 'clean' },
+         
 
-      maleProducts: [
-        {
-          id: 1,
-          name: 'Shirt Black Shine',
-          price: 393.00,
-          images: ['images/men_jacket.jpg', 'images/men_jacket2.jpg'],
-          colors: ['#000000', '#FFFFFF', '#FF0000']
-        },
-        
-         {
-          id: 2,
-          name: 'Shirt Blue Shine',
-          price: 90.00,
-          images: ['images/men_jacket.jpg', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
-          colors: ['#000000', '#FFFFFF', '#FF0000']
-        },
-        
-         {
-          id: 3,
-          name: 'Shirt Black Shine',
-          price: 393.00,
-          images: ['https://via.placeholder.com/300x400?text=Shirt+Front', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
-          colors: ['#000000', '#FFFFFF', '#FF0000']
-        },
-       
-         {
-          id: 4,
-          name: 'Shirt Black Shine',
-          price: 393.00,
-          images: ['https://via.placeholder.com/300x400?text=Shirt+Front', 'https://via.placeholder.com/300x400?text=Shirt+Back'],
-          colors: ['#000000', '#FFFFFF', '#FF0000']
-        },
-        // add more products here..
+         
+
       ],
+    };
+  },
+  computed: {
+    filteredProducts() {
+      let filtered = this.products;
+      if (this.categoryFilter) {
+        filtered = filtered.filter(p => p.category === this.categoryFilter);
+      }
+      if (this.colorFilter.length) {
+        filtered = filtered.filter(p => p.colors.some(c => this.colorFilter.includes(c)));
+      }
       
-
-      womenProducts: [
-        {
-          id: 10,
-          name: 'Elegant Dress',
-          price: 549.00,
-          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
-          colors: ['#FF69B4', '#000000']
-        },
-        // add more products here...
-        {
-          id: 11,
-          name: 'Elegant Dress',
-          price: 549.00,
-          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
-          colors: ['#FF69B4', '#000000']
-        },
-        {
-          id: 12,
-          name: 'Elegant Dress',
-          price: 549.00,
-          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
-          colors: ['#FF69B4', '#000000']
-        },
-        {
-          id: 13,
-          name: 'Elegant Dress',
-          price: 549.00,
-          images: ['https://via.placeholder.com/300x400?text=Elegant+Dress'],
-          colors: ['#FF69B4', '#000000']
-        },
-      ],
-
-      kidsProducts: [
-        {
-          id: 20,
-          name: 'Kids Tee',
-          price: 120.00,
-          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
-          colors: ['#00FFFF', '#FF4500']
-        },
-        {
-          id: 21,
-          name: 'Kids Tee',
-          price: 120.00,
-          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
-          colors: ['#00FFFF', '#FF4500']
-        },
-        {
-          id: 22,
-          name: 'Kids Tee',
-          price: 120.00,
-          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
-          colors: ['#00FFFF', '#FF4500']
-        },
-        {
-          id: 23,
-          name: 'Kids Tee',
-          price: 120.00,
-          images: ['https://via.placeholder.com/300x400?text=Kids+Tee'],
-          colors: ['#00FFFF', '#FF4500']
-        },
-        // add more products here...
-      ],
+      if (this.priceSort === 'asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (this.priceSort === 'desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+      return filtered;
     }
   },
   methods: {
-    scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    },
-    performSearch() {
-      alert(`Search for: ${this.searchQuery}`);
-      // Implement real search logic here
-    },
-    toggleMobileMenu() {
-      this.showMobileMenu = !this.showMobileMenu;
-    },
     toggleColorFilter(color) {
       if (this.colorFilter.includes(color)) {
         this.colorFilter = this.colorFilter.filter(c => c !== color);
       } else {
         this.colorFilter.push(color);
       }
-      // Optionally, filter maleProducts here based on selected colors
-    },
-    submitNewsletter() {
-      if(this.newsletterEmail) {
-        this.newsletterSubmitted = true;
-        this.newsletterEmail = '';
-      }
-    }
-  },
-  computed: {
-    filteredMaleProducts() {
-      let filtered = this.maleProducts;
-
-      if(this.colorFilter.length) {
-        filtered = filtered.filter(product =>
-          product.colors.some(color => this.colorFilter.includes(color))
-        );
-      }
-
-      switch(this.maleSort) {
-        case 'nameAsc':
-          filtered = filtered.sort((a,b) => a.name.localeCompare(b.name));
-          break;
-        case 'nameDesc':
-          filtered = filtered.sort((a,b) => b.name.localeCompare(a.name));
-          break;
-        case 'priceAsc':
-          filtered = filtered.sort((a,b) => a.price - b.price);
-          break;
-        case 'priceDesc':
-          filtered = filtered.sort((a,b) => b.price - a.price);
-          break;
-      }
-
-      return filtered;
-    }
-  },
-  watch: {
-    maleSort() {
-      // Re-sort filteredMaleProducts when sort option changes
-    },
-    colorFilter() {
-      // Re-filter when color filter changes
-    }
+    }, 
   }
 }).mount('#app');
 </script>
+</body>
+</html>
+
