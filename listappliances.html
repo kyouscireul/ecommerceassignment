@@ -121,18 +121,6 @@
         </div>
       </div>
       <div>
-        <h2 class="font-semibold mb-2">Color</h2>
-        <div class="flex flex-wrap gap-2">
-          <span v-for="color in availableColors" :key="color" :style="{backgroundColor: color}" @click="toggleColorFilter(color)" class="w-6 h-6 rounded-full border-2 cursor-pointer" :class="colorFilter.includes(color) ? 'ring-2 ring-purple-600' : ''"></span>
-        </div>
-      </div>
-      <div>
-        <h2 class="font-semibold mb-2">Size</h2>
-        <div class="flex flex-wrap gap-2">
-          <button v-for="size in availableSizes" :key="size" @click="toggleSizeFilter(size)" class="px-3 py-1 border rounded" :class="sizeFilter.includes(size) ? 'bg-purple-600 text-white' : ''">{{ size }}</button>
-        </div>
-      </div>
-      <div>
         <h2 class="font-semibold mb-2">Sort by Price</h2>
         <select v-model="priceSort" class="w-full border border-gray-300 px-3 py-1 rounded">
           <option value="">Default</option>
@@ -147,7 +135,7 @@
         <div class="border-t border-gray-300 pt-8 mt-8">
   
         <section>
-  <h2 class="text-2xl font-semibold mb-4">Kitchen Appliances</h2>
+  <h2 class="text-2xl font-semibold mb-6">Kitchen Appliances</h2>
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div 
       v-for="product in filteredProducts.filter(p => p.category === 'kitchen').slice(0, sectionLimits.kitchen)"
@@ -191,7 +179,7 @@
 <div class="border-t border-gray-300 pt-8 mt-8"></div>
       <section>
          
-  <h2 class="text-2xl font-semibold mb-4">Gardening Tools</h2>
+  <h2 class="text-2xl font-semibold mb-6">Gardening Tools</h2>
 
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div 
@@ -233,7 +221,7 @@
 
 <div class="border-t border-gray-300 pt-8 mt-8"></div>
       <section>
-        <h2 class="text-2xl font-semibold mb-4">Cleaning Appliances</h2>
+        <h2 class="text-2xl font-semibold mb-6">Cleaning Appliances</h2>
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div v-for="product in filteredProducts.filter(p => p.category === 'clean').slice(0, sectionLimits.clean)" :key="product.id" class="border rounded p-4 group cursor-pointer">
             <div class="relative overflow-hidden rounded h-48 mb-4">
