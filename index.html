@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veloura - Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
-    <script src="data/products.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -239,10 +238,7 @@
                                 Submit
                             </button>
                         </div>
-                        <!-- <div v-else class="text-center md:text-left">
-                            <h2 class="text-2xl font-bold text-green-600 mb-2">Thank you!</h2>
-                            <p class="text-gray-600">You've successfully subscribed to our newsletter.</p>
-                        </div> -->
+
                     </div>
                 </div>
 
@@ -256,9 +252,9 @@
                         <h4 class="font-bold text-lg mb-2">Quick Links</h4>
                         <ul class="grid grid-cols-2 gap-2 text-gray-600">
                             <li><a href="index.html" class="hover:text-purple-600 transition">Home</a></li>
-                            <li><a href="productlistpage.html" class="hover:text-purple-600 transition">Products</a></li>
+                            <li><a href="index.html#categories" class="hover:text-purple-600 transition">Products</a></li>
                             <li><a href="cartpage.html" class="hover:text-purple-600 transition">Cart</a></li>
-                            <li><a href="status.html" class="hover:text-purple-600 transition">Orders</a></li>
+                            <li><a href="checkoutpage.html" class="hover:text-purple-600 transition">Orders</a></li>
                         </ul>
                     </div>
                     <div class="md:w-1/3">
@@ -296,7 +292,7 @@
                   },
                   {
                     title: "Electronic Devices",
-                    src: "images/gadgets.webp"
+                    src: "images/gadgets.png"
                   }
                 ],
                 mainCategories: [
@@ -326,115 +322,115 @@
                       clothes: [
                         {
                           id: 1,
-                          name: "Summer Linen Shirt",
+                          name: "Smart Casual Black Jacket",
                           price: 49.99,
-                          image: "images/trending/shirt.jpg"
+                          image: "images/productImages/men/IMG_3276.jpg"
                         },
                         {
                           id: 2,
-                          name: "Denim Jacket",
+                          name: "Girl Sweater Red ",
                           price: 89.99,
-                          image: "images/trending/jacket.jpg"
+                          image: "images/productImages/women/IMG_3260.jpg"
                         },
                         {
                           id: 3,
-                          name: "Casual Chinos",
+                          name: "Male Outerwear Korean",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/men/IMG_3266.jpg"
                         },
                         {
                           id: 10,
-                          name: "Casual Seluar",
+                          name: "Relaxing Pant and Shirt Black",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/men/IMG_3282.jpg"
                         },
                         {
                           id: 11,
-                          name: "Casual Baju",
+                          name: "Kids Blue Dress",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/kids/IMG_3301.jpg"
                         },
                         {
                           id: 12,
-                          name: "Casual Topi",
+                          name: "Cherry Lace Neck Dress",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/women/IMG_3257.jpg"
                         }
                       ],
                       gadgets: [
                         {
                           id: 4,
-                          name: "Wireless Earbuds",
+                          name: "Samsung S24 Ultra",
                           price: 129.99,
-                          image: "images/trending/earbuds.jpg"
+                          image: "images/productImages/mobile/IMG_3392.jpg"
                         },
                         {
                           id: 5,
                           name: "Smart Watch",
                           price: 199.99,
-                          image: "images/trending/watch.jpg"
+                          image: "images/productImages/mobile/IMG_3371.jpg"
                         },
                         {
                           id: 6,
-                          name: "Bluetooth Speaker",
+                          name: "Mac Air",
                           price: 79.99,
-                          image: "images/trending/speaker.jpg"
+                          image: "images/productImages/laptop/IMG_3397.jpg"
                         },
                         {
                           id: 13,
-                          name: "Casual Seluar",
+                          name: "Power Bank",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/mobile/IMG_3384.jpg"
                         },
                         {
                           id: 14,
-                          name: "Casual Baju",
+                          name: "Ipad",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/mobile/IMG_3374.jpg"
                         },
                         {
                           id: 15,
-                          name: "Casual Topi",
+                          name: "Apple Mac Book",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/laptop/IMG_3373.jpg"
                         }
                       ],
                       appliances: [
                         {
                           id: 7,
-                          name: "Air Fryer",
+                          name: "Watering Tool",
                           price: 149.99,
-                          image: "images/trending/airfryer.jpg"
+                          image: "images/productImages/garden/IMG_3351.jpg"
                         },
                         {
                           id: 8,
-                          name: "Blender",
+                          name: "Multi-Colored Bins",
                           price: 89.99,
-                          image: "images/trending/blender.jpg"
+                          image: "images/productImages/clean/IMG_3345.jpg"
                         },
                         {
                           id: 9,
-                          name: "Coffee Maker",
+                          name: "High Quality Secatuer",
                           price: 119.99,
-                          image: "images/trending/coffee.jpg"
+                          image: "images/productImages/garden/IMG_3353.jpg"
                         },
                         {
                           id: 16,
-                          name: "Casual Seluar",
+                          name: "Air Fryer",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/kitchen/IMG_3326.jpg"
                         },
                         {
                           id: 17,
-                          name: "Casual Baju",
+                          name: "Hand Shovel",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/garden/IMG_3354.jpg"
                         },
                         {
                           id: 18,
-                          name: "Casual Topi",
+                          name: "Gardening Gloves",
                           price: 59.99,
-                          image: "images/trending/pants.jpg"
+                          image: "images/productImages/garden/IMG_3352.jpg"
                         }
                       ]
                     },
