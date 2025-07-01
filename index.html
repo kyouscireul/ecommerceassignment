@@ -17,7 +17,7 @@
                 <div class="flex justify-between items-center py-4">
                     <!-- Logo -->
                     <div class="flex items-center">
-                       <a href="index.html" class="text-3xl font-bold text-black-600 hover:text-purple-700 transition" style="font-family: 'Playfair Display', serif;">
+                       <a href="index.html" class="text-3xl font-bold text-black-600 hover:text-pink-600 transition" style="font-family: 'Playfair Display', serif;">
                           Veloura
                         </a>
 
@@ -25,15 +25,15 @@
 
                     <!-- Navigation Links -->
                     <div class="hidden lg:flex items-center space-x-8">
-                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-black-600 transition font-medium">
-                            TRENDING
-                        </a>
-                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-black-600 transition font-medium">
-                            CATEGORIES
-                        </a>
-                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
-                            JOIN US
-                        </a>
+                            <a href="index.html#trending" class="text-gray-700 hover:text-black-600 transition font-medium">
+                                TRENDING
+                            </a>
+                            <a href="index.html#categories" class="text-gray-700 hover:text-black-600 transition font-medium">
+                                CATEGORIES
+                            </a>
+                            <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
+                                JOIN US
+                            </a>
                     </div>
 
                     <!-- Search Bar -->
@@ -43,7 +43,7 @@
                                 v-model="searchQuery" 
                                 type="text" 
                                 placeholder="Search products..." 
-                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
+                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                             >
                         <button 
                             @click="performSearch"
@@ -73,7 +73,7 @@
                             </svg>
                             <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
                         </a>
-                        <a href="cartpage.html" class="text-gray-700 hover:text-purple-600 transition relative">
+                        <a href="cartpage.html" class="text-gray-600 hover:text-pink-600 transition relative">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"/>
                             </svg>
@@ -92,13 +92,13 @@
                 <!-- Mobile Menu -->
                 <div v-show="showMobileMenu" class="lg:hidden py-4 border-t">
                     <div class="flex flex-col space-y-4">
-                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-purple-600">Trending</a>
-                        <a href="#categories" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600">Categories</a>
-                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-purple-600">Join Us</a>
+                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-600 hover:text-pink-600">Trending</a>
+                        <a href="productlistpage.html" @click="scrollToSection('categories')" class="text-gray-700 hover:text-pink-600">Categories</a>
+                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-600 hover:text-pink-600">Join Us</a>
                         <!-- Mobile Search -->
                         <div class="flex mt-4">
-                            <input v-model="searchQuery" type="text" placeholder="Search..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <button @click="performSearch" class="bg-purple-600 text-white px-4 py-2 rounded-r-md hover:bg-purple-700">Search</button>
+                            <input v-model="searchQuery" type="text" placeholder="Search..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <button @click="performSearch" class="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-pink-600">Search</button>
                         </div>
                     </div>
                 </div>
@@ -139,21 +139,21 @@
                     <div class="flex justify-center space-x-8">
                         <button 
                             @click="setTrendingCategory('clothes')"
-                            :class="trendingCategory === 'clothes' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-600 hover:text-purple-600'"
+                            :class="trendingCategory === 'clothes' ? 'text-pink-600 border-b-2 border-pink-600' : 'text-gray-600 hover:text-pink-600'"
                             class="text-lg font-medium pb-2 transition"
                         >
                             Clothes
                         </button>
                         <button 
                             @click="setTrendingCategory('gadgets')"
-                            :class="trendingCategory === 'gadgets' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-600 hover:text-purple-600'"
+                            :class="trendingCategory === 'gadgets' ? 'text-pink-600 border-b-2 border-pink-600' : 'text-gray-600 hover:text-pink-600'"
                             class="text-lg font-medium pb-2 transition"
                         >
                             Gadgets
                         </button>
                         <button 
                             @click="setTrendingCategory('appliances')"
-                            :class="trendingCategory === 'appliances' ? 'text-purple-600 border-b-2 border-purple-600' : 'text-gray-600 hover:text-purple-600'"
+                            :class="trendingCategory === 'appliances' ? 'text-pink-600 border-b-2 border-pink-600' : 'text-gray-600 hover:text-pink-600'"
                             class="text-lg font-medium pb-2 transition"
                         >
                             Home Appliances
@@ -175,7 +175,7 @@
                             </div>
                             <div class="p-4 bg-white">
                               <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
-                              <p class="text-purple-600 font-bold">${{ product.price.toFixed(2) }}</p>
+                              <p class="text-pink-600 font-bold">${{ product.price.toFixed(2) }}</p>
                             </div>
                         </div>
                     </div>
@@ -228,33 +228,36 @@
                                 v-model="email" 
                                 type="email" 
                                 placeholder="Enter your email" 
-                                class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-600"
                                 @keyup.enter="subscribe"
                             >
                             <button 
                                 @click="subscribe" 
                                 :disabled="!email || subscribing"
-                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition">
                                 Submit
                             </button>
                         </div>
-
+                        <!-- <div v-else class="text-center md:text-left">
+                            <h2 class="text-2xl font-bold text-green-600 mb-2">Thank you!</h2>
+                            <p class="text-gray-600">You've successfully subscribed to our newsletter.</p>
+                        </div> -->
                     </div>
                 </div>
 
                 <!-- Horizontal Footer Links -->
                 <div class="flex flex-col md:flex-row justify-between gap-8">
                     <div class="md:w-2/4">
-                        <h4 class="text-3xl font-bold text-black-600 hover:text-purple-700 transition mb-3 " style="font-family: 'Playfair Display', serif;">Veloura</h4>
+                        <h4 class="text-3xl font-bold text-black-600 hover:text-pink-600 transition mb-3 " style="font-family: 'Playfair Display', serif;">Veloura</h4>
                         <p class="text-gray-600">Discover the latest trends in fashion, technology, and home essentials.</p>
                     </div>
                     <div class="md:w-1/3">
                         <h4 class="font-bold text-lg mb-2">Quick Links</h4>
                         <ul class="grid grid-cols-2 gap-2 text-gray-600">
-                            <li><a href="index.html" class="hover:text-purple-600 transition">Home</a></li>
-                            <li><a href="index.html#categories" class="hover:text-purple-600 transition">Products</a></li>
-                            <li><a href="cartpage.html" class="hover:text-purple-600 transition">Cart</a></li>
-                            <li><a href="checkoutpage.html" class="hover:text-purple-600 transition">Orders</a></li>
+                            <li><a href="index.html" class="hover:text-pink-600 transition">Home</a></li>
+                            <li><a href="productlistpage.html" class="hover:text-pink-600 transition">Products</a></li>
+                            <li><a href="cartpage.html" class="hover:text-pink-600 transition">Cart</a></li>
+                            <li><a href="status.html" class="hover:text-pink-600 transition">Orders</a></li>
                         </ul>
                     </div>
                     <div class="md:w-1/3">
@@ -267,7 +270,7 @@
                     </div>
                 </div>
 
-                <div class="mt-12 p-5 border-t border-gray-300 text-center text-gray-600">
+                <div class="mt-12 p-5 border-t border-gray-600 text-center text-gray-600">
                     <p>&copy; 2025 Veloura. All rights reserved.</p>
                 </div>
             </div>
