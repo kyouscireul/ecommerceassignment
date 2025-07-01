@@ -125,13 +125,13 @@
       <div>
         <h2 class="font-semibold mb-2">Color</h2>
         <div class="flex flex-wrap gap-2">
-          <span v-for="color in availableColors" :key="color" :style="{backgroundColor: color}" @click="toggleColorFilter(color)" class="w-6 h-6 rounded-full border-2 cursor-pointer" :class="colorFilter.includes(color) ? 'ring-2 ring-purple-600' : ''"></span>
+          <span v-for="color in availableColors" :key="color" :style="{backgroundColor: color}" @click="toggleColorFilter(color)" class="w-6 h-6 rounded-full border-2 cursor-pointer" :class="colorFilter.includes(color) ? 'ring-2 ring-pink-600' : ''"></span>
         </div>
       </div>
       <div>
         <h2 class="font-semibold mb-2">Size</h2>
         <div class="flex flex-wrap gap-2">
-          <button v-for="size in availableSizes" :key="size" @click="toggleSizeFilter(size)" class="px-3 py-1 border rounded" :class="sizeFilter.includes(size) ? 'bg-purple-600 text-white' : ''">{{ size }}</button>
+          <button v-for="size in availableSizes" :key="size" @click="toggleSizeFilter(size)" class="px-3 py-1 border rounded" :class="sizeFilter.includes(size) ? 'bg-pink-600 text-white' : ''">{{ size }}</button>
         </div>
       </div>
       <div>
@@ -165,7 +165,7 @@
          <img v-if="product.images[4]" :src="product.images[4]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
       </div>
       <h3 class="font-semibold">{{ product.name }}</h3>
-      <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+      <p class="text-pink-600 font-bold">MYR {{ product.price.toFixed(2) }}</p>
       <div class="flex gap-1 mt-2">
         <span 
           v-for="color in product.colors" 
@@ -182,7 +182,7 @@
     <button 
       v-if="filteredProducts.filter(p => p.category === 'men').length > sectionLimits.men"
       @click="sectionLimits.men += 4"
-      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition"
+      class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-pink-600 transition"
     >
       See More
     </button>
@@ -210,7 +210,7 @@
         <img v-if="product.images[4]" :src="product.images[4]" :alt="product.name + ' alternate view'" class="w-full h-full object-cover relative">
       </div>
       <h3 class="font-semibold">{{ product.name }}</h3>
-      <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+      <p class="text-pink-600 font-bold">MYR {{ product.price.toFixed(2) }}</p>
       <div class="flex gap-1 mt-2">
         <span 
           v-for="color in product.colors" 
@@ -227,7 +227,7 @@
     <button 
       v-if="filteredProducts.filter(p => p.category === 'women').length > sectionLimits.women"
       @click="sectionLimits.women += 4"
-      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition mx-auto block"
+      class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-pink-600 transition mx-auto block"
     >
       See More
     </button>
@@ -247,7 +247,7 @@
                  <img :src="product.images[4]" :alt="product.name" class="w-full h-full object-cover">
             </div>
             <h3 class="font-semibold">{{ product.name }}</h3>
-            <p class="text-purple-700 font-bold">MYR {{ product.price.toFixed(2) }}</p>
+            <p class="text-pink-600 font-bold">MYR {{ product.price.toFixed(2) }}</p>
             <div class="flex gap-1 mt-2">
               <span v-for="color in product.colors" :key="color" :style="{backgroundColor: color}" class="w-4 h-4 rounded-full border"></span>
             </div>
@@ -259,7 +259,7 @@
     <button 
       v-if="filteredProducts.filter(p => p.category === 'kids').length > sectionLimits.kids"
       @click="sectionLimits.kids += 4"
-      class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition mx-auto block"
+      class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-pink-600 transition mx-auto block"
     >
       See More
     </button>
