@@ -1,6 +1,6 @@
 window.gadgets;
 
-export const clothes = [
+window.clothes = [
         { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men' },
         { id: 2, name: 'Male Sweater', price: 150, images: ['images/productImages/men/IMG_3264.jpg', 'images/productImages/men/IMG_3264.jpg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
         { id: 3, name: 'Shirt Casual', price: 150, images: ['images/productImages/men/IMG_3265.jpg', 'images/productImages/men/IMG_3265.jpg'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
@@ -21,7 +21,7 @@ export const clothes = [
 
       ];
 
-export const appliances = [
+window.appliances = [
         { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
         { id: 17, name: 'Men Shirt 2', price: 150, images: ['images/productImages/IMG_3326.jpg', 'images/productImages/IMG_3326.jpg'], category: 'kitchen' },
         { id: 18, name: 'Men Shirt 3', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'kitchen' },
@@ -43,7 +43,7 @@ export const appliances = [
       ];
 
 
-export const gadgets = [
+window.gadgets = [
         { id: 31, name: 'Men Shirt 1', price: 100, images: ['images/IMG_3265.jpg', 'images/IMG_3265.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
         { id: 32, name: 'Men Shirt 2', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
         { id: 33, name: 'Men Shirt 3', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
