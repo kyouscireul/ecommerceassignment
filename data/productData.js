@@ -23,43 +23,43 @@ window.clothes = [
 
 window.appliances = [
         { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
-        { id: 17, name: 'Men Shirt 2', price: 150, images: ['images/productImages/IMG_3326.jpg', 'images/productImages/IMG_3326.jpg'], category: 'kitchen' },
-        { id: 18, name: 'Men Shirt 3', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'kitchen' },
-        { id: 19, name: 'Men Shirt 4', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'kitchen' },
-        { id: 20, name: 'Men Shirt 5', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'kitchen' },
+        { id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen' },
+        { id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen' },
+        { id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen' },
+        { id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
         
-        { id: 21, name: 'Women Dress 1', price: 200, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'gardening' },
-        { id: 22, name: 'Women Dress 2', price: 200, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'gardening' },
-        { id: 23, name: 'Women Dress 3', price: 200, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'gardening' },
-        { id: 24, name: 'Women Dress 4', price: 200, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'gardening' },
-        { id: 25, name: 'Women Dress 5', price: 200, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'gardening' },
+        { id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening' },
+        { id: 22, name: 'Gloves', price: 30, images: ['images/productImages/garden/IMG_3352.jpg', 'images/productImages/garden/IMG_3352.jpg'], category: 'gardening' },
+        { id: 23, name: 'Hedge Shears', price: 23, images: ['images/productImages/garden/IMG_3353.jpg', 'images/productImages/garden/IMG_3353.jpg'], category: 'gardening' },
+        { id: 24, name: 'Garden Trowel', price: 22, images: ['images/productImages/garden/IMG_3354.jpg', 'images/productImages/garden/IMG_3354.jpg'], category: 'gardening' },
+        { id: 25, name: 'Sickle', price: 11, images: ['images/productImages/garden/IMG_3355.jpg', 'images/productImages/garden/IMG_3355.jpg'], category: 'gardening' },
         
-        { id: 26, name: 'Kids Tee 1', price: 80, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'cleaning' },
-        { id: 27, name: 'Kids Tee 2', price: 80, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'cleaning' },
-        { id: 28, name: 'Kids Tee 3', price: 80, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'cleaning' },
-        { id: 29, name: 'Kids Tee 4', price: 80, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'cleaning' },
-        { id: 30, name: 'Kids Tee 5', price: 80, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], category: 'cleaning' },
+        { id: 26, name: 'Vacuum', price: 80, images: ['images/productImages/clean/IMG_3344.jpg', 'images/productImages/clean/IMG_3344.jpg'], category: 'cleaning' },
+        { id: 27, name: 'Rubbish Bin', price: 40, images: ['images/productImages/clean/IMG_3345.jpg', 'images/productImages/clean/IMG_3345.jpg'], category: 'cleaning' },
+        { id: 28, name: 'Mop', price: 10, images: ['images/productImages/clean/IMG_3348.jpg', 'images/productImages/clean/IMG_3348.jpg'], category: 'cleaning' },
+        { id: 29, name: 'Broom', price: 18, images: ['images/productImages/clean/IMG_3349.jpg', 'images/productImages/clean/IMG_3349.jpg'], category: 'cleaning' },
+        { id: 30, name: 'Dustpan', price: 10, images: ['images/productImages/clean/IMG_3350.jpg', 'images/productImages/clean/IMG_3350.jpg'], category: 'cleaning' },
       
       ];
 
 
 window.gadgets = [
-        { id: 31, name: 'Men Shirt 1', price: 100, images: ['images/IMG_3265.jpg', 'images/IMG_3265.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
-        { id: 32, name: 'Men Shirt 2', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
-        { id: 33, name: 'Men Shirt 3', price: 150, images: ['images/IMG_3276.jpg', 'images/IMG_3276.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
-        { id: 34, name: 'Men Shirt 4', price: 150, images: ['https://via.placeholder.com/300x400?text=Front', 'images/whiteshirt.png'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
-        { id: 35, name: 'Men Shirt 5', price: 150, images: ['https://via.placeholder.com/300x400?text=Front', 'images/blazer.png'], category: 'mobile' },
+        { id: 31, name: 'Smart Watch', price: 2000, images: ['images/productImages/mobile/IMG_3371.jpg', 'images/productImages/mobile/IMG_3371.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+        { id: 32, name: 'Ipad Pro 11', price: 2500, images: ['images/productImages/mobile/IMG_3374.jpg', 'images/productImages/mobile/IMG_3374.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+        { id: 33, name: 'Ipad Pro 12.9', price: 3550, images: ['images/productImages/mobile/IMG_3376.jpg', 'images/productImages/mobile/IMG_3376.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+        { id: 34, name: 'Power Bank', price: 80, images: ['images/productImages/mobile/IMG_3384.jpg', 'images/productImages/mobile/IMG_3384.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+        { id: 35, name: 'Phone Notebook', price: 5000, images: ['images/productImages/mobile/IMG_3392.jpg', 'images/productImages/mobile/IMG_3392.jpg'], category: 'mobile' },
         
-        { id: 36, name: 'Women Dress 1', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/floraldress.png'], colors: ['#DAF7A6', '#FFC300'], category: 'laptop' },
-        { id: 37, name: 'Women Dress 2', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/greensweater.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
-        { id: 38, name: 'Women Dress 3', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/greysweatshirt.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
-        { id: 39, name: 'Women Dress 4', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/top.png'], colors: ['#DAF7A6', '#FFC300'], category: 'laptop' },
-        { id: 40, name: 'Women Dress 5', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/pajama.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+        { id: 36, name: 'Laptop Notebook', price: 4000, images: ['images/productImages/laptop/IMG_1000.png', 'images/productImages/laptop/IMG_1000.png'], category: 'laptop' },
+        { id: 37, name: 'Apple Laptop', price: 6000, images: ['images/productImages/laptop/IMG_3372.jpg', 'images/productImages/laptop/IMG_3372.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+        { id: 38, name: 'Chromebook Laptop', price: 3000, images: ['images/productImages/laptop/IMG_1001.png', 'images/productImages/laptop/IMG_1001.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+        { id: 39, name: 'Netbook Laptop', price: 5000, images: ['images/productImages/laptop/IMG_1002.png', 'images/productImages/laptop/IMG_1002.png'], colors: ['#DAF7A6', '#FFC300'], category: 'laptop' },
+        { id: 40, name: 'Gaming Laptop', price: 5500, images: ['images/productImages/laptop/IMG_1003.png', 'images/productImages/laptop/IMG_1003.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
         
-        { id: 41, name: 'Kids Tee 1', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'images/dresspinkkid.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
-        { id: 42, name: 'Kids Tee 2', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'images/bluedress.png'], colors: ['#DAF7A6', '#FFC300'], category: 'desktop' },
-        { id: 43, name: 'Kids Tee 3', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'images/sweaterkids.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
-        { id: 44, name: 'Kids Tee 4', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'images/whitedressk.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
-        { id: 45, name: 'Kids Tee 5', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'images/setboy'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+        { id: 41, name: 'Mouse', price: 80, images: ['images/productImages/desktop/IMG_7710.jpg', 'images/productImages/desktop/IMG_7710.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+        { id: 42, name: 'Tower Unit', price: 80, images: ['images/productImages/desktop/IMG_7711.jpg', 'images/productImages/desktop/IMG_7711.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'desktop' },
+        { id: 43, name: 'Desktop Computer', price: 80, images: ['images/productImages/desktop/IMG_7777.jpg', 'images/productImages/desktop/IMG_7777.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+        { id: 44, name: 'Speaker', price: 80, images: ['images/productImages/desktop/IMG_7712.jpg', 'images/productImages/desktop/IMG_7712.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+        { id: 45, name: 'Pen Drive', price: 80, images: ['images/productImages/desktop/IMG_7779.jpg', 'images/productImages/desktop/IMG_7779.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
       
       ];

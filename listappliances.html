@@ -116,8 +116,8 @@
         <div class="space-y-1">
           <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="" class="mr-2"> All</label>
           <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="kitchen" class="mr-2"> Kitchen Appliances</label>
-          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="garden" class="mr-2"> Gardening Tools</label>
-          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="clean" class="mr-2"> Cleaning Appliances</label>
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="gardening" class="mr-2"> Gardening Tools</label>
+          <label class="flex items-center"><input type="radio" v-model="categoryFilter" value="cleaning" class="mr-2"> Cleaning Appliances</label>
         </div>
       </div>
       <div>
@@ -183,7 +183,7 @@
 
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div 
-      v-for="product in filteredProducts.filter(p => p.category === 'garden').slice(0, sectionLimits.garden)" 
+      v-for="product in filteredProducts.filter(p => p.category === 'gardening').slice(0, sectionLimits.gardening)" 
       :key="product.id" 
       class="border rounded p-4 group cursor-pointer"
     >
@@ -210,8 +210,8 @@
   <!-- See More Button -->
   <div class="mt-4">
     <button 
-      v-if="filteredProducts.filter(p => p.category === 'garden').length > sectionLimits.garden"
-      @click="sectionLimits.garden += 4"
+      v-if="filteredProducts.filter(p => p.category === 'gardening').length > sectionLimits.gardening"
+      @click="sectionLimits.gardening += 4"
       class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-pink-600 transition mx-auto block"
     >
       See More
@@ -223,7 +223,7 @@
       <section>
         <h2 class="text-2xl font-semibold mb-6">Cleaning Appliances</h2>
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div v-for="product in filteredProducts.filter(p => p.category === 'clean').slice(0, sectionLimits.clean)" :key="product.id" class="border rounded p-4 group cursor-pointer">
+          <div v-for="product in filteredProducts.filter(p => p.category === 'cleaning').slice(0, sectionLimits.cleaning)" :key="product.id" class="border rounded p-4 group cursor-pointer">
             <div class="relative overflow-hidden rounded h-48 mb-4">
               <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover">
                <img :src="product.images[1]" :alt="product.name" class="w-full h-full object-cover">
@@ -241,8 +241,8 @@
          <!-- See More Button -->
   <div class="mt-4">
     <button 
-      v-if="filteredProducts.filter(p => p.category === 'clean').length > sectionLimits.clean"
-      @click="sectionLimits.clean += 4"
+      v-if="filteredProducts.filter(p => p.category === 'cleaning').length > sectionLimits.cleaning"
+      @click="sectionLimits.cleaning += 4"
       class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-pink-600 transition mx-auto block"
     >
       See More
@@ -329,32 +329,29 @@ createApp({
       availableColors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],
       sectionLimits: {
   kitchen: 4,
-  garden: 4,
-  clean: 4
+  gardening: 4,
+  cleaning: 4
 },
 
       products: [
-        { id: 1, name: 'Airfryer', price: 100, images: ['KITCHEN/AIRFRYER.jpeg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], category: 'kitchen' },
-        { id: 2, name: 'Blender', price: 150, images: ['KITCHEN/BLENDER.jpeg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
-        { id: 3, name: 'B', price: 150, images: ['KITCHEN/TOASTER.webp', 'KITCHEN/TOASTER.webp'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], category: 'kitchen' },
-        { id: 4, name: 'Microwave', price: 150, images: ['KITCHEN/MICROWAVE.webp', 'images/whiteshirt.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
-        { id: 5, name: 'Men Shirt 5', price: 150, images: ['https://via.placeholder.com/300x400?text=Front', 'images/blazer.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'kitchen' },
+        { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
+        { id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen' },
+        { id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen' },
+        { id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen' },
+        { id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3331.jpg'], category: 'kitchen' },
         
-         { id: 6, name: 'Women Dress 1', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/floraldress.png'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
-         { id: 7, name: 'Women Dress 2', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/blazer.png'], colors: [ '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
-         { id: 8, name: 'Women Dress 3', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'images/'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
-         { id: 9, name: 'Women Dress 4', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000',  '#8B4513', '	#FFF0F5'],  category: 'garden' },
-         { id: 10, name: 'Women Dress 5', price: 200, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'garden' },
+        { id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening' },
+        { id: 22, name: 'Gloves', price: 30, images: ['images/productImages/garden/IMG_3352.jpg', 'images/productImages/garden/IMG_3352.jpg'], category: 'gardening' },
+        { id: 23, name: 'Hedge Shears', price: 23, images: ['images/productImages/garden/IMG_3353.jpg', 'images/productImages/garden/IMG_3353.jpg'], category: 'gardening' },
+        { id: 24, name: 'Garden Trowel', price: 22, images: ['images/productImages/garden/IMG_3354.jpg', 'images/productImages/garden/IMG_3354.jpg'], category: 'gardening' },
+        { id: 25, name: 'Sickle', price: 11, images: ['images/productImages/garden/IMG_3355.jpg', 'images/productImages/garden/IMG_3355.jpg'], category: 'gardening' },
         
-         { id: 11, name: 'Kids Tee 1', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#FFF0F5'],  category: 'clean' },
-         { id: 12, name: 'Kids Tee 2', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', 	],  category: 'clean' },
-         { id: 13, name: 'Kids Tee 3', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'clean' },
-         { id: 14, name: 'Kids Tee 4', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],  category: 'clean' },
-        { id: 15, name: 'Kids Tee 5', price: 80, images: ['https://via.placeholder.com/300x400?text=Front', 'https://via.placeholder.com/300x400?text=Back'], colors: ['#000000', '#E0FFFF', '	#8B4513'],  category: 'clean' },
-         
-
-         
-
+        { id: 26, name: 'Vacuum', price: 80, images: ['images/productImages/clean/IMG_3344.jpg', 'images/productImages/clean/IMG_3344.jpg'], category: 'cleaning' },
+        { id: 27, name: 'Rubbish Bin', price: 40, images: ['images/productImages/clean/IMG_3345.jpg', 'images/productImages/clean/IMG_3345.jpg'], category: 'cleaning' },
+        { id: 28, name: 'Mop', price: 10, images: ['images/productImages/clean/IMG_3348.jpg', 'images/productImages/clean/IMG_3348.jpg'], category: 'cleaning' },
+        { id: 29, name: 'Broom', price: 18, images: ['images/productImages/clean/IMG_3349.jpg', 'images/productImages/clean/IMG_3349.jpg'], category: 'cleaning' },
+        { id: 30, name: 'Dustpan', price: 10, images: ['images/productImages/clean/IMG_3350.jpg', 'images/productImages/clean/IMG_3350.jpg'], category: 'cleaning' },
+      
       ],
     };
   },
