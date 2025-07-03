@@ -253,7 +253,7 @@
 					</div>
 
 					<button
-						class="bg-[#8B4513] text-white px-6 py-3 mt-4 rounded hover:bg-[#7a3e10] transition"
+						class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
 						@click="addToCart"
 					>
 						Add to Cart
@@ -568,9 +568,11 @@
           		this.productId = parseInt(localStorage.getItem('currentProductId'), 10);
 
 			    if (this.productId) {
-			      this.product = this.getProductFromId(this.productId);
-			      this.productImages = this.product.images;
-			      this.activeImage = this.product.images[0];
+					this.product = this.getProductFromId(this.productId);
+					this.productImages = this.product.images;
+					this.activeImage = this.product.images[0];
+					console.log(this.product);
+					console.log(this.product.images);
 			    }
 			  }
 			}).mount('#app');
