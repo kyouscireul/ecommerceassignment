@@ -456,6 +456,7 @@
 			  data() {
 			    return {
 					isCartVisible: false,
+					cartCount: 0,
 					cart: JSON.parse(localStorage.getItem('cart')) || [],
 			      	products: [
 						{ id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
@@ -532,6 +533,7 @@
 			      localStorage.setItem('cart', JSON.stringify(cart));
 			    },
 				toggleCartSidebar() {
+					console.log('Toggling cart sidebar');
 					this.isCartVisible = !this.isCartVisible;
 				},
 				increaseQty(index) {
