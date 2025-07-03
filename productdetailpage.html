@@ -557,6 +557,16 @@
 					this.toggleCartSidebar();  // Hide the sidebar when viewing the cart
 					window.location.href = "cartpage.html"; // Optional: If you want to redirect to the cart page
 				},
+				viewProductDetail(productId) {
+					const product = this.products.find(p => p.id === productId);
+					if (product && product.images && product.images.length > 0) {
+						localStorage.setItem('currentProductId', productId);
+						window.location.href = 'productdetailpage.html';
+					} else {
+						console.error('Product not found or has no images');
+						// Optionally show an error message to the user
+					}
+			  	},
 			  },
 			  computed: {
 				subtotal() {
