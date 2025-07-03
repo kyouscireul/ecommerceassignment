@@ -382,11 +382,6 @@ createApp({
       // Navigate to the product detail page
       window.location.href = 'productdetailpage.html';
     },
-    performSearch() {
-      if (this.searchQuery.trim()) {
-        window.location.href = `searchresults.html?query=${encodeURIComponent(this.searchQuery)}`;
-      }
-    },
     scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       if (section) {
