@@ -10,6 +10,19 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="styles.css" />
+		<style>
+			/* Tailwind CSS for the sidebar sliding effect */
+			.transform {
+				transform: translateX(100%);
+			}
+
+			.transition-all {
+				transition: all 0.3s ease;
+			}
+			/* .translate-x-0 {
+				transform: translateX(0);
+			} */
+		</style>
 	</head>
 	<body class="bg-white text-gray-800">
 		<div id="app">
@@ -100,7 +113,7 @@
 							</a>
 							<a
 								href="wishlist.html"
-								class="text-gray-700 hover:text-black-600 transition relative"
+								class="text-gray-700 hover:text-purple-600 transition relative"
 							>
 								<svg
 									class="w-6 h-6"
@@ -301,7 +314,7 @@
 				<div class="flex justify-end p-4">
 					<button @click="toggleCartSidebar" class="text-white text-2xl">×</button>
 				</div>
-				<div class="bg-white w-96 h-full p-6 overflow-y-auto">
+				 <div class="bg-white w-96 h-full p-6 overflow-y-auto transform transition-all duration-300 ease-in-out" :class="isCartVisible ? 'translate-x-0' : 'translate-x-full'">
 					<h2 class="text-xl font-semibold mb-4">Your Cart</h2>
 					<div v-for="(item, index) in cart" :key="item.id" class="flex items-center border-b py-4">
 						<img :src="item.images[0]" alt="Product" class="w-20 h-20 object-contain" />
