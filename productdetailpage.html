@@ -10,7 +10,8 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="styles.css" />
-		<style>
+		<!-- BUG PERLU DEBUG -->
+		<!-- <style>
 			/* Tailwind CSS for the sidebar sliding effect */
 			.transform {
 				transform: translateX(100%);
@@ -22,9 +23,9 @@
 			/* .translate-x-0 {
 				transform: translateX(0);
 			} */
-		</style>
+		</style> -->
 	</head>
-	<body class="bg-white text-gray-800">
+	<body class="bg-gray-50 text-gray-800">
 		<div id="app">
 			<!-- Header -->
 			<header class="bg-white shadow-lg sticky top-0 z-50">
@@ -228,7 +229,7 @@
 					<img
 						:src="activeImage"
 						alt="Main Product"
-						class="rounded mb-4 w-full h-auto max-h-[250px] object-cover"
+						class="ml-20 mb-4 max-w-md h-full object-cover"
 					/>
 				</div>
 
@@ -271,26 +272,38 @@
 			</section>
 
 			<!-- Recommendation Section -->
-			<section
-				id="categories"
-				class="container mx-auto px-4 py-10 bg-pink-50"
-			>
-				<h2 class="text-xl font-semibold mb-6">Recommended for You</h2>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-					<div>
-						<img src="images/test.jpg" alt="Rec 1" class="rounded mb-2" />
-						<h3 class="text-sm">ALBERT EARRINGS – RM59.00</h3>
+			<section id="categories" class="container mx-auto px-10 py-12 rounded-xl bg-pink-50 border">
+				<h2 class="text-2xl font-semibold mb-4 pb-6">Recommended for You</h2>
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+					<!-- Product Card -->
+					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<img src="images/productImages/men/IMG_3266.jpg" alt="Rec 1"
+						class="rounded mb-4 w-full h-64 object-cover" />
+					<h3 class="text-sm text-center">ALBERT EARRINGS – RM59.00</h3>
 					</div>
-					<div>
-						<img src="images/test.jpg" alt="Rec 2" class="rounded mb-2" />
-						<h3 class="text-sm">DOLL-LACE DRESS – RM209.00</h3>
+
+					<!-- Product Card -->
+					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<img src="images/productImages/garden/IMG_3353.jpg" alt="Rec 2"
+						class="rounded mb-4 w-full h-64 object-cover" />
+					<h3 class="text-sm text-center">DOLL-LACE DRESS – RM209.00</h3>
 					</div>
-					<div>
-						<img src="images/test.jpg" alt="Rec 3" class="rounded mb-2" />
-						<h3 class="text-sm">MILKY EARRINGS – RM69.00</h3>
+
+					<!-- Product Card -->
+					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<img src="images/productImages/desktop/IMG_7712.png" alt="Rec 3"
+						class="rounded mb-4 w-full h-64 object-cover" />
+					<h3 class="text-sm text-center">MILKY EARRINGS – RM69.00</h3>
+					</div>
+
+					<!-- Product Card -->
+					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<img src="images/productImages/clean/IMG_3346.jpg" alt="Rec 3"
+						class="rounded mb-4 w-full h-64 object-cover" />
+					<h3 class="text-sm text-center">MILKY EARRINGS – RM69.00</h3>
 					</div>
 				</div>
-			</section>
+</section>
 
 			<!-- Customer Reviews -->
 			<section class="container mx-auto px-4 py-10">
@@ -312,7 +325,7 @@
 			<!-- Cart Sidebar -->
 			<div v-if="isCartVisible" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50">
 				<div class="flex justify-end p-4">
-					<button @click="toggleCartSidebar" class="text-white text-2xl">×</button>
+					<button @click="toggleCartSidebar" class="text-white text-2xl"></button>
 				</div>
 				 <div class="bg-white w-96 h-full p-6 overflow-y-auto transform transition-all duration-300 ease-in-out" :class="isCartVisible ? 'translate-x-0' : 'translate-x-full'">
 					<h2 class="text-xl font-semibold mb-4">Your Cart</h2>
