@@ -216,20 +216,6 @@
 						alt="Main Product"
 						class="rounded mb-4 w-full h-auto max-h-[250px] object-cover"
 					/>
-
-					<!-- Thumbnail Gallery -->
-					<div class="grid grid-cols-3 gap-5">
-						<img
-							v-for="(img, index) in productImages"
-							:key="index"
-							:src="img"
-							:alt="'Gallery image ' + (index + 1)"
-							class="rounded cursor-pointer border-2"
-							:class="{ 'border-pink-600': activeImage === img, 'border-transparent': activeImage !== img }"
-							@click="activeImage = img"
-							style="width: 100%; height: 250px"
-						/>
-					</div>
 				</div>
 
 				<!-- Product Details -->
@@ -239,20 +225,16 @@
 						RM{{ product.price }}
 					</p>
 					<p class="text-sm text-gray-500 mb-2">
-						★★★★★ ({{ product.reviews }} reviews)
+						★★★★★ ({{ product.review }} reviews)
 					</p>
-					<p class="text-sm mb-4">{{ product.description }}</p>
+					<p class="text-sm text-gray-500 mb-4">{{ product.description }}</p>
 
 					<div class="mb-4">
 						<p class="font-semibold mb-1">Size</p>
 						<div class="space-x-2">
-							<button
-								v-for="size in product.sizes"
-								:key="size"
-								class="border px-3 py-1 rounded"
-							>
-								{{ size }}
-							</button>
+							<div class="flex gap-1 mt-2">
+								<span v-for="color in product.colors" :key="color" :style="{backgroundColor: color}" class="w-4 h-4 rounded-full border"></span>
+							</div>
 						</div>
 					</div>
 
@@ -424,31 +406,31 @@
 			  data() {
 			    return {
 			      products: [
-			        { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men' },
-			        { id: 2, name: 'Male Sweater', price: 150, images: ['images/productImages/men/IMG_3264.jpg', 'images/productImages/men/IMG_3264.jpg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
-			        { id: 3, name: 'Shirt Casual', price: 150, images: ['images/productImages/men/IMG_3265.jpg', 'images/productImages/men/IMG_3265.jpg'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
-			        { id: 4, name: 'Korean Male Sweater', price: 150, images: ['images/productImages/men/IMG_3266.jpg', 'images/productImages/men/IMG_3266.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
-			        { id: 5, name: 'Casual Tee', price: 150, images: ['images/productImages/men/IMG_3267.jpg', 'images/productImages/men/IMG_3267.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
+			        { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 2, name: 'Male Sweater', price: 150, images: ['images/productImages/men/IMG_3264.jpg', 'images/productImages/men/IMG_3264.jpg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 3, name: 'Shirt Casual', price: 150, images: ['images/productImages/men/IMG_3265.jpg', 'images/productImages/men/IMG_3265.jpg'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 4, name: 'Korean Male Sweater', price: 150, images: ['images/productImages/men/IMG_3266.jpg', 'images/productImages/men/IMG_3266.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 5, name: 'Casual Tee', price: 150, images: ['images/productImages/men/IMG_3267.jpg', 'images/productImages/men/IMG_3267.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
 
-			        { id: 6, name: 'Pink Sweater', price: 200, images: ['images/productImages/women/IMG_3218.jpg', 'images/productImages/women/IMG_3218.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
-			        { id: 7, name: 'Cardigan Pink', price: 200, images: ['images/productImages/women/IMG_3219.jpg', 'images/productImages/women/IMG_3219.jpg'], colors: [ '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
-			        { id: 8, name: 'Cardigan Classy', price: 200, images: ['images/productImages/women/IMG_3220.jpg', 'images/productImages/women/IMG_3220.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
-			        { id: 9, name: 'Flowy Cardigan', price: 200, images: ['images/productImages/women/IMG_3222.jpg', 'images/productImages/women/IMG_3222.jpg'], colors: ['#000000',  '#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
-			        { id: 10, name: 'Floral Cardigan', price: 200, images: ['images/productImages/women/IMG_3223.jpg', 'images/productImages/women/IMG_3223.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
+			        { id: 6, name: 'Pink Sweater', price: 200, images: ['images/productImages/women/IMG_3218.jpg', 'images/productImages/women/IMG_3218.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 7, name: 'Cardigan Pink', price: 200, images: ['images/productImages/women/IMG_3219.jpg', 'images/productImages/women/IMG_3219.jpg'], colors: [ '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 8, name: 'Cardigan Classy', price: 200, images: ['images/productImages/women/IMG_3220.jpg', 'images/productImages/women/IMG_3220.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 9, name: 'Flowy Cardigan', price: 200, images: ['images/productImages/women/IMG_3222.jpg', 'images/productImages/women/IMG_3222.jpg'], colors: ['#000000',  '#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 10, name: 'Floral Cardigan', price: 200, images: ['images/productImages/women/IMG_3223.jpg', 'images/productImages/women/IMG_3223.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
 
-			        { id: 11, name: 'Girl Dress', price: 80, images: ['images/productImages/kids/IMG_3296.jpg', 'images/productImages/kids/IMG_3296.jpg'], colors: ['#000000', '#E0FFFF', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
-			        { id: 12, name: 'Girl Jumper', price: 80, images: ['images/productImages/kids/IMG_3297.jpg', 'images/productImages/kids/IMG_3297.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', 	], sizes: ['S', 'M'], category: 'kids' },
-			        { id: 13, name: 'Jean Top', price: 80, images: ['images/productImages/kids/IMG_3300.jpg', 'images/productImages/kids/IMG_3300.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
-			        { id: 14, name: 'Girl Floral Dress', price: 80, images: ['images/productImages/kids/IMG_3301.jpg', 'images/productImages/kids/IMG_3301.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
-			        { id: 15, name: 'Flowy Dress', price: 80, images: ['images/productImages/kids/IMG_3303.jpg', 'images/productImages/kids/IMG_3303.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['S', 'M'], category: 'kids' },
+			        { id: 11, name: 'Girl Dress', price: 80, images: ['images/productImages/kids/IMG_3296.jpg', 'images/productImages/kids/IMG_3296.jpg'], colors: ['#000000', '#E0FFFF', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 12, name: 'Girl Jumper', price: 80, images: ['images/productImages/kids/IMG_3297.jpg', 'images/productImages/kids/IMG_3297.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', 	], sizes: ['S', 'M'], category: 'kids', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 13, name: 'Jean Top', price: 80, images: ['images/productImages/kids/IMG_3300.jpg', 'images/productImages/kids/IMG_3300.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 14, name: 'Girl Floral Dress', price: 80, images: ['images/productImages/kids/IMG_3301.jpg', 'images/productImages/kids/IMG_3301.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+			        { id: 15, name: 'Flowy Dress', price: 80, images: ['images/productImages/kids/IMG_3303.jpg', 'images/productImages/kids/IMG_3303.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['S', 'M'], category: 'kids', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
 
-			        { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
-					{ id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen' },
-					{ id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen' },
-					{ id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen' },
-					{ id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
+			        { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+					{ id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+					{ id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+					{ id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
+					{ id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
 
-					{ id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening' },
+					{ id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 12 },
 					{ id: 22, name: 'Gloves', price: 30, images: ['images/productImages/garden/IMG_3352.jpg', 'images/productImages/garden/IMG_3352.jpg'], category: 'gardening' },
 					{ id: 23, name: 'Hedge Shears', price: 23, images: ['images/productImages/garden/IMG_3353.jpg', 'images/productImages/garden/IMG_3353.jpg'], category: 'gardening' },
 					{ id: 24, name: 'Garden Trowel', price: 22, images: ['images/productImages/garden/IMG_3354.jpg', 'images/productImages/garden/IMG_3354.jpg'], category: 'gardening' },

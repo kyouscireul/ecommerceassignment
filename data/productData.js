@@ -1,4 +1,4 @@
-window.gadgets;
+window.gadgets=gadgets;
 
 window.clothes = [
         { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men' },
