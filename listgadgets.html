@@ -143,6 +143,7 @@
       v-for="product in filteredProducts.filter(p => p.category === 'mobile').slice(0, sectionLimits.mobile)"
       :key="product.id" 
       class="border rounded p-4 group cursor-pointer"
+      @click="viewProductDetail(product.id)"
     >
       <div class="relative overflow-hidden rounded h-48 mb-4">
         <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0">
@@ -188,6 +189,7 @@
       v-for="product in filteredProducts.filter(p => p.category === 'laptop').slice(0, sectionLimits.laptop)" 
       :key="product.id" 
       class="border rounded p-4 group cursor-pointer"
+      @click="viewProductDetail(product.id)"
     >
       <div class="relative overflow-hidden rounded h-48 mb-4">
         <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0">
@@ -225,7 +227,11 @@
       <section>
         <h2 class="text-2xl font-semibold mb-6">Desktop Section</h2>
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div v-for="product in filteredProducts.filter(p => p.category === 'desktop').slice(0, sectionLimits.desktop)" :key="product.id" class="border rounded p-4 group cursor-pointer">
+          <div v-for="product in filteredProducts.filter(p => p.category === 'desktop').slice(0, sectionLimits.desktop)"
+            :key="product.id"
+            class="border rounded p-4 group cursor-pointer"
+            @click="viewProductDetail(product.id)"
+          >
             <div class="relative overflow-hidden rounded h-48 mb-4">
               <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover">
                <img :src="product.images[1]" :alt="product.name" class="w-full h-full object-cover">
@@ -327,12 +333,11 @@ createApp({
     return {
       priceSort: '',
       categoryFilter: '',
-
       sectionLimits: {
-  mobile: 4,
-  laptop: 4,
-  desktop: 4
-},
+        mobile: 4,
+        laptop: 4,
+        desktop: 4
+      },
 
        products: [
         { id: 31, name: 'Smart Watch', price: 2000, images: ['images/productImages/mobile/IMG_3371.jpg', 'images/productImages/mobile/IMG_3371.jpg'], category: 'mobile' },
@@ -352,7 +357,6 @@ createApp({
         { id: 43, name: 'Desktop Computer', price: 80, images: ['images/productImages/desktop/IMG_7777.jpg', 'images/productImages/desktop/IMG_7777.jpg'], category: 'desktop' },
         { id: 44, name: 'Speaker', price: 80, images: ['images/productImages/desktop/IMG_7712.png', 'images/productImages/desktop/IMG_7712.png'], category: 'desktop' },
         { id: 45, name: 'Pen Drive', price: 80, images: ['images/productImages/desktop/IMG_7779.jpg', 'images/productImages/desktop/IMG_7779.jpg'], category: 'desktop' },
-      
       ],
     };
   },
@@ -370,6 +374,25 @@ createApp({
       }
       return filtered;
     }
+  },
+  methods: {
+    viewProductDetail(productId) {
+      // Store the product ID in localStorage
+      localStorage.setItem('currentProductId', productId);
+      // Navigate to the product detail page
+      window.location.href = 'productdetailpage.html';
+    },
+    performSearch() {
+      if (this.searchQuery.trim()) {
+        window.location.href = `searchresults.html?query=${encodeURIComponent(this.searchQuery)}`;
+      }
+    },
+    scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
   },
 
 }).mount('#app');

@@ -357,10 +357,10 @@ createApp({
       availableColors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'],
       availableSizes: ['S', 'M', 'L', 'XL'],
       sectionLimits: {
-  men: 4,
-  women: 4,
-  kids: 4
-},
+        men: 4,
+        women: 4,
+        kids: 4
+      },
 
       products: [
         { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men' },
@@ -380,7 +380,6 @@ createApp({
         { id: 13, name: 'Jean Top', price: 80, images: ['images/productImages/kids/IMG_3300.jpg', 'images/productImages/kids/IMG_3300.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
         { id: 14, name: 'Girl Floral Dress', price: 80, images: ['images/productImages/kids/IMG_3301.jpg', 'images/productImages/kids/IMG_3301.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
         { id: 15, name: 'Flowy Dress', price: 80, images: ['images/productImages/kids/IMG_3303.jpg', 'images/productImages/kids/IMG_3303.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['S', 'M'], category: 'kids' },
-
       ],
     };
   },
@@ -420,10 +419,10 @@ createApp({
       }
     },
     viewProductDetail(productId) {
-    // Store the product ID in localStorage
-    localStorage.setItem('currentProductId', productId);
-    // Navigate to the product detail page
-    window.location.href = 'productdetailpage.html';
+      // Store the product ID in localStorage
+      localStorage.setItem('currentProductId', productId);
+      // Navigate to the product detail page
+      window.location.href = 'productdetailpage.html';
     },
   }
 }).mount('#app');
