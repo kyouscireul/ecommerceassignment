@@ -156,6 +156,7 @@
       v-for="product in filteredProducts.filter(p => p.category === 'men').slice(0, sectionLimits.men)"
       :key="product.id" 
       class="border rounded p-4 group cursor-pointer"
+      @click="viewProductDetail(product.id)" 
     >
       <div class="relative overflow-hidden rounded h-48 mb-4">
         <img :src="product.images[0]" :alt="product.name" class="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0">
@@ -410,6 +411,12 @@ createApp({
       } else {
         this.sizeFilter.push(size);
       }
+    },
+    viewProductDetail(productId) {
+    // Store the product ID in localStorage
+    localStorage.setItem('currentProductId', productId);
+    // Navigate to the product detail page
+    window.location.href = 'productdetailpage.html';
     },
   }
 }).mount('#app');

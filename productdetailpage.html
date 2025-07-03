@@ -1,277 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veloura - Home</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Veloura - Home</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body class="bg-white text-gray-800">
+		<div id="app">
+			<!-- Header -->
+			<header class="bg-white shadow-lg sticky top-0 z-50">
+				<nav class="max-w-7xl mx-auto px-4">
+					<div class="flex justify-between items-center py-4">
+						<!-- Logo -->
+						<div class="flex items-center">
+							<a
+								href="index.html"
+								class="text-3xl font-bold text-black-600 hover:text-pink-600 transition"
+								style="font-family: 'Playfair Display', serif"
+							>
+								Veloura
+							</a>
+						</div>
 
-</head>
-<body class="bg-white text-gray-800">
-  <div id="app">
+						<!-- Navigation Links -->
+						<div class="hidden lg:flex items-center space-x-8">
+							<a
+								href="index.html#trending"
+								class="text-gray-700 hover:text-black-600 transition font-medium"
+							>
+								TRENDING
+							</a>
+							<a
+								href="index.html#categories"
+								class="text-gray-700 hover:text-black-600 transition font-medium"
+							>
+								CATEGORIES
+							</a>
+							<a
+								href="#footer"
+								@click="scrollToSection('footer')"
+								class="text-gray-700 hover:text-black-600 transition font-medium"
+							>
+								JOIN US
+							</a>
+						</div>
 
-    <!-- Header -->
-        <header class="bg-white shadow-lg sticky top-0 z-50">
-            <nav class="max-w-7xl mx-auto px-4">
-                <div class="flex justify-between items-center py-4">
-                    <!-- Logo -->
-                    <div class="flex items-center">
-                       <a href="index.html" class="text-3xl font-bold text-black-600 hover:text-pink-600 transition" style="font-family: 'Playfair Display', serif;">
-                          Veloura
-                        </a>
+						<!-- Search Bar -->
+						<div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+							<div class="relative w-full">
+								<input
+									v-model="searchQuery"
+									type="text"
+									placeholder="Search products..."
+									class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
+								/>
+								<button
+									@click="performSearch"
+									class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition"
+								>
+									<svg
+										class="w-4 h-4"
+										fill="none"
+										stroke="white"
+										viewBox="0 0 24 24"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+										/>
+									</svg>
+								</button>
+							</div>
+						</div>
 
-                    </div>
+						<!-- User Actions -->
+						<div class="flex items-center space-x-4">
+							<a
+								href="#"
+								@click="showLogin = true"
+								class="text-gray-700 hover:text-black-600 transition font-medium"
+							>
+								LOGIN
+							</a>
+							<span class="text-gray-400">|</span>
+							<a
+								href="#"
+								@click="showSignup = true"
+								class="text-gray-700 hover:text-black-600 transition font-medium"
+							>
+								SIGNUP
+							</a>
+							<a
+								href="wishlist.html"
+								class="text-gray-700 hover:text-black-600 transition relative"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+									/>
+								</svg>
+								<span
+									v-if="wishlistCount > 0"
+									class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+								></span>
+							</a>
+							<a
+								href="cartpage.html"
+								class="text-gray-700 hover:text-purple-600 transition relative"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"
+									/>
+								</svg>
+								<span
+									v-if="cartCount > 0"
+									class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+								></span>
+							</a>
+						</div>
 
-                    <!-- Navigation Links -->
-                    <div class="hidden lg:flex items-center space-x-8">
-                            <a href="index.html#trending" class="text-gray-700 hover:text-black-600 transition font-medium">
-                                TRENDING
-                            </a>
-                            <a href="index.html#categories" class="text-gray-700 hover:text-black-600 transition font-medium">
-                                CATEGORIES
-                            </a>
-                            <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-black-600 transition font-medium">
-                                JOIN US
-                            </a>
-                    </div>
+						<!-- Mobile Menu Button -->
+						<button @click="toggleMobileMenu" class="lg:hidden ml-4">
+							<svg
+								class="w-6 h-6"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 6h16M4 12h16M4 18h16"
+								/>
+							</svg>
+						</button>
+					</div>
 
-                    <!-- Search Bar -->
-                    <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
-                        <div class="relative w-full">
-                            <input 
-                                v-model="searchQuery" 
-                                type="text" 
-                                placeholder="Search products..." 
-                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
-                            >
-                        <button 
-                            @click="performSearch"
-                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition"
-                            >
-                            <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                        </button>
+					<!-- Mobile Menu -->
+					<div v-show="showMobileMenu" class="lg:hidden py-4 border-t">
+						<div class="flex flex-col space-y-4">
+							<a
+								href="#trending"
+								@click="scrollToSection('trending')"
+								class="text-gray-700 hover:text-purple-600"
+								>Trending</a
+							>
+							<a
+								href="productlistpage.html"
+								@click="scrollToSection('categories')"
+								class="text-gray-700 hover:text-purple-600"
+								>Categories</a
+							>
+							<a
+								href="#footer"
+								@click="scrollToSection('footer')"
+								class="text-gray-700 hover:text-purple-600"
+								>Join Us</a
+							>
+							<!-- Mobile Search -->
+							<div class="flex mt-4">
+								<input
+									v-model="searchQuery"
+									type="text"
+									placeholder="Search..."
+									class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+								/>
+								<button
+									@click="performSearch"
+									class="bg-purple-600 text-white px-4 py-2 rounded-r-md hover:bg-purple-700"
+								>
+									Search
+								</button>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</header>
 
-                        </div>
-                    </div>
+			<!-- Product Section -->
+			<section
+				id="app"
+				class="container mx-auto grid md:grid-cols-2 gap-8 px-4 py-8"
+			>
+				<!-- Product Images -->
+				<div>
+					<!-- Main Image -->
+					<img
+						:src="activeImage"
+						alt="Main Product"
+						class="rounded mb-4 w-full h-auto max-h-[250px] object-cover"
+					/>
 
-                    <!-- User Actions -->
-                    <div class="flex items-center space-x-4">
-                        <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
-                            LOGIN
-                        </a>
-                        <span class="text-gray-400">|</span>
-                        <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
-                            SIGNUP
-                        </a>
-                        <a href="wishlist.html" class="text-gray-700 hover:text-black-600 transition relative">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                            <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
-                        </a>
-                        <a href="cartpage.html" class="text-gray-700 hover:text-purple-600 transition relative">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"/>
-                            </svg>
-                            <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
-                        </a>
-                    </div>
+					<!-- Thumbnail Gallery -->
+					<div class="grid grid-cols-3 gap-5">
+						<img
+							v-for="(img, index) in productImages"
+							:key="index"
+							:src="img"
+							:alt="'Gallery image ' + (index + 1)"
+							class="rounded cursor-pointer border-2"
+							:class="{ 'border-pink-600': activeImage === img, 'border-transparent': activeImage !== img }"
+							@click="activeImage = img"
+							style="width: 100%; height: 250px"
+						/>
+					</div>
+				</div>
 
-                    <!-- Mobile Menu Button -->
-                    <button @click="toggleMobileMenu" class="lg:hidden ml-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
+				<!-- Product Details -->
+				<div>
+					<h1 class="text-3xl font-semibold mb-2">{{ product.name }}</h1>
+					<p class="text-lg text-pink-600 font-bold mb-2">
+						RM{{ product.price }}
+					</p>
+					<p class="text-sm text-gray-500 mb-2">
+						★★★★★ ({{ product.reviews }} reviews)
+					</p>
+					<p class="text-sm mb-4">{{ product.description }}</p>
 
-                <!-- Mobile Menu -->
-                <div v-show="showMobileMenu" class="lg:hidden py-4 border-t">
-                    <div class="flex flex-col space-y-4">
-                        <a href="#trending" @click="scrollToSection('trending')" class="text-gray-700 hover:text-purple-600">Trending</a>
-                        <a href="productlistpage.html" @click="scrollToSection('categories')" class="text-gray-700 hover:text-purple-600">Categories</a>
-                        <a href="#footer" @click="scrollToSection('footer')" class="text-gray-700 hover:text-purple-600">Join Us</a>
-                        <!-- Mobile Search -->
-                        <div class="flex mt-4">
-                            <input v-model="searchQuery" type="text" placeholder="Search..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <button @click="performSearch" class="bg-purple-600 text-white px-4 py-2 rounded-r-md hover:bg-purple-700">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
+					<div class="mb-4">
+						<p class="font-semibold mb-1">Size</p>
+						<div class="space-x-2">
+							<button
+								v-for="size in product.sizes"
+								:key="size"
+								class="border px-3 py-1 rounded"
+							>
+								{{ size }}
+							</button>
+						</div>
+					</div>
 
-    <!-- Product Section -->
-<section id="app" class="container mx-auto grid md:grid-cols-2 gap-8 px-4 py-8">
-  <!-- Product Images -->
-  <div>
-    <!-- Main Image -->
-    <img :src="activeImage" alt="Main Product" class="rounded mb-4 w-full h-auto max-h-[250px] object-cover">
+					<button
+						class="bg-[#8B4513] text-white px-6 py-3 mt-4 rounded hover:bg-[#7a3e10] transition"
+						@click="addToCart"
+					>
+						Add to Cart
+					</button>
+				</div>
+			</section>
 
-    <!-- Thumbnail Gallery -->
-    <div class="grid grid-cols-3 gap-5">
-      <img
-        v-for="(img, index) in productImages"
-        :key="index"
-        :src="img"
-        :alt="'Gallery image ' + (index + 1)"
-        class="rounded cursor-pointer border-2"
-        :class="{ 'border-pink-600': activeImage === img, 'border-transparent': activeImage !== img }"
-        @click="activeImage = img"
-        style="width: 100%; height: 250px"
-      >
-    </div>
-  </div>
+			<!-- Overview Section -->
+			<section class="container mx-auto px-4 py-10">
+				<h2 class="text-xl font-semibold mb-2">Product Overview</h2>
+				<p class="text-gray-600">
+					This item features high-quality lace material, a comfortable fit,
+					and timeless elegance suitable for any occasion.
+				</p>
+			</section>
 
-  <!-- Product Details -->
-  <div>
-    <h1 class="text-3xl font-semibold mb-2">Classic Lace Dress</h1>
-    <p class="text-lg text-pink-600 font-bold mb-2">RM229.00 MYR</p>
-    <p class="text-sm text-gray-500 mb-2">★★★★★ (34 reviews)</p>
-    <p class="text-sm mb-4">Elegant lace dress perfect for tea parties, formal gatherings, and vintage-themed photoshoots.</p>
+			<!-- Recommendation Section -->
+			<section
+				id="categories"
+				class="container mx-auto px-4 py-10 bg-pink-50"
+			>
+				<h2 class="text-xl font-semibold mb-6">Recommended for You</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					<div>
+						<img src="images/test.jpg" alt="Rec 1" class="rounded mb-2" />
+						<h3 class="text-sm">ALBERT EARRINGS – RM59.00</h3>
+					</div>
+					<div>
+						<img src="images/test.jpg" alt="Rec 2" class="rounded mb-2" />
+						<h3 class="text-sm">DOLL-LACE DRESS – RM209.00</h3>
+					</div>
+					<div>
+						<img src="images/test.jpg" alt="Rec 3" class="rounded mb-2" />
+						<h3 class="text-sm">MILKY EARRINGS – RM69.00</h3>
+					</div>
+				</div>
+			</section>
 
-    <div class="mb-4">
-      <p class="font-semibold mb-1">Size</p>
-      <div class="space-x-2">
-        <button class="border px-3 py-1 rounded">S</button>
-        <button class="border px-3 py-1 rounded">M</button>
-        <button class="border px-3 py-1 rounded">L</button>
-        <button class="border px-3 py-1 rounded">XL</button>
-      </div>
-    </div>
+			<!-- Customer Reviews -->
+			<section class="container mx-auto px-4 py-10">
+				<h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
+				<div class="mb-4">
+					<p class="text-sm">5.0 ★★★★★ based on 12 reviews</p>
+				</div>
+				<textarea
+					placeholder="Write a review..."
+					class="w-full border rounded p-2 mb-4"
+				></textarea>
+				<button
+					class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-pink-700"
+				>
+					Submit Review
+				</button>
+			</section>
 
-    <button class="bg-[#8B4513] text-white px-6 py-3 mt-4 rounded hover:bg-[#7a3e10] transition">
-      Add to Cart
-    </button>
-  </div>
-</section>
+			<!-- Footer / Join Us -->
 
-    <!-- Overview Section -->
-    <section class="container mx-auto px-4 py-10">
-      <h2 class="text-xl font-semibold mb-2">Product Overview</h2>
-      <p class="text-gray-600">This item features high-quality lace material, a comfortable fit, and timeless elegance suitable for any occasion.</p>
-    </section>
+			<footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
+				<div class="max-w-7xl mx-auto px-4">
+					<!-- Horizontal Subscription Section -->
+					<div
+						class="flex flex-col md:flex-row items-center justify-between mb-12 pb-12 border-b border-gray-300"
+					>
+						<div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+							<h2 class="text-3xl font-bold mb-2">Stay Updated</h2>
+							<h3 class="text-xl text-gray-600">
+								Subscribe to our newsletter
+							</h3>
+						</div>
 
-    <!-- Recommendation Section -->
-    <section id="categories" class="container mx-auto px-4 py-10 bg-pink-50">
-      <h2 class="text-xl font-semibold mb-6">Recommended for You</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <img src="images/test.jpg" alt="Rec 1" class="rounded mb-2">
-          <h3 class="text-sm">ALBERT EARRINGS – RM59.00</h3>
-        </div>
-        <div>
-          <img src="images/test.jpg" alt="Rec 2" class="rounded mb-2">
-          <h3 class="text-sm">DOLL-LACE DRESS – RM209.00</h3>
-        </div>
-        <div>
-          <img src="images/test.jpg" alt="Rec 3" class="rounded mb-2">
-          <h3 class="text-sm">MILKY EARRINGS – RM69.00</h3>
-        </div>
-      </div>
-    </section>
-
-    <!-- Customer Reviews -->
-    <section class="container mx-auto px-4 py-10">
-      <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
-      <div class="mb-4">
-        <p class="text-sm">5.0 ★★★★★ based on 12 reviews</p>
-      </div>
-      <textarea placeholder="Write a review..." class="w-full border rounded p-2 mb-4"></textarea>
-      <button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-pink-700">Submit Review</button>
-    </section>
-
-    <!-- Footer / Join Us -->
-
-        <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
-            <div class="max-w-7xl mx-auto px-4">
-                <!-- Horizontal Subscription Section -->
-                <div class="flex flex-col md:flex-row items-center justify-between mb-12 pb-12 border-b border-gray-300">
-                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                        <h2 class="text-3xl font-bold mb-2">Stay Updated</h2>
-                        <h3 class="text-xl text-gray-600">Subscribe to our newsletter</h3>
-                    </div>
-                    
-                    <div class="md:w-1/2 w-full">
-                        <div v-if="!subscribed" class="flex">
-                            <input 
-                                v-model="email" 
-                                type="email" 
-                                placeholder="Enter your email" 
-                                class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-600"
-                                @keyup.enter="subscribe"
-                            >
-                            <button 
-                                @click="subscribe" 
-                                :disabled="!email || subscribing"
-                                class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition">
-                                Submit
-                            </button>
-                        </div>
-                        <!-- <div v-else class="text-center md:text-left">
+						<div class="md:w-1/2 w-full">
+							<div v-if="!subscribed" class="flex">
+								<input
+									v-model="email"
+									type="email"
+									placeholder="Enter your email"
+									class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-600"
+									@keyup.enter="subscribe"
+								/>
+								<button
+									@click="subscribe"
+									:disabled="!email || subscribing"
+									class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+								>
+									Submit
+								</button>
+							</div>
+							<!-- <div v-else class="text-center md:text-left">
                             <h2 class="text-2xl font-bold text-green-600 mb-2">Thank you!</h2>
                             <p class="text-gray-600">You've successfully subscribed to our newsletter.</p>
                         </div> -->
-                    </div>
-                </div>
+						</div>
+					</div>
 
-                <!-- Horizontal Footer Links -->
-                <div class="flex flex-col md:flex-row justify-between gap-8">
-                    <div class="md:w-2/4">
-                        <h4 class="text-3xl font-bold text-black-600 hover:text-pink-600 transition mb-3 " style="font-family: 'Playfair Display', serif;">Veloura</h4>
-                        <p class="text-gray-600">Discover the latest trends in fashion, technology, and home essentials.</p>
-                    </div>
-                    <div class="md:w-1/3">
-                        <h4 class="font-bold text-lg mb-2">Quick Links</h4>
-                        <ul class="grid grid-cols-2 gap-2 text-gray-600">
-                            <li><a href="index.html" class="hover:text-pink-600 transition">Home</a></li>
-                            <li><a href="productlistpage.html" class="hover:text-pink-600 transition">Products</a></li>
-                            <li><a href="cartpage.html" class="hover:text-pink-600 transition">Cart</a></li>
-                            <li><a href="status.html" class="hover:text-pink-600 transition">Orders</a></li>
-                        </ul>
-                    </div>
-                    <div class="md:w-1/3">
-                        <h4 class="font-bold text-lg mb-2">Contact</h4>
-                        <ul class="grid space-y-1 text-gray-600">
-                            <li>support@veloura.com</li>
-                            <li>+1 (555) 123-4567</li>
-                            <li>@velouraecommerce</li>
-                        </ul>
-                    </div>
-                </div>
+					<!-- Horizontal Footer Links -->
+					<div class="flex flex-col md:flex-row justify-between gap-8">
+						<div class="md:w-2/4">
+							<h4
+								class="text-3xl font-bold text-black-600 hover:text-pink-600 transition mb-3"
+								style="font-family: 'Playfair Display', serif"
+							>
+								Veloura
+							</h4>
+							<p class="text-gray-600">
+								Discover the latest trends in fashion, technology, and
+								home essentials.
+							</p>
+						</div>
+						<div class="md:w-1/3">
+							<h4 class="font-bold text-lg mb-2">Quick Links</h4>
+							<ul class="grid grid-cols-2 gap-2 text-gray-600">
+								<li>
+									<a
+										href="index.html"
+										class="hover:text-pink-600 transition"
+										>Home</a
+									>
+								</li>
+								<li>
+									<a
+										href="productlistpage.html"
+										class="hover:text-pink-600 transition"
+										>Products</a
+									>
+								</li>
+								<li>
+									<a
+										href="cartpage.html"
+										class="hover:text-pink-600 transition"
+										>Cart</a
+									>
+								</li>
+								<li>
+									<a
+										href="status.html"
+										class="hover:text-pink-600 transition"
+										>Orders</a
+									>
+								</li>
+							</ul>
+						</div>
+						<div class="md:w-1/3">
+							<h4 class="font-bold text-lg mb-2">Contact</h4>
+							<ul class="grid space-y-1 text-gray-600">
+								<li>support@veloura.com</li>
+								<li>+1 (555) 123-4567</li>
+								<li>@velouraecommerce</li>
+							</ul>
+						</div>
+					</div>
 
-                <div class="mt-12 p-5 border-t border-gray-600 text-center text-gray-600">
-                    <p>&copy; 2025 Veloura. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+					<div
+						class="mt-12 p-5 border-t border-gray-600 text-center text-gray-600"
+					>
+						<p>&copy; 2025 Veloura. All rights reserved.</p>
+					</div>
+				</div>
+			</footer>
+		</div>
 
-  </div>
+		<script>
+			const { createApp } = Vue;
+			createApp({
+			  data() {
+			    return {
+			      products: [
+			        { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men' },
+			        { id: 2, name: 'Male Sweater', price: 150, images: ['images/productImages/men/IMG_3264.jpg', 'images/productImages/men/IMG_3264.jpg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
+			        { id: 3, name: 'Shirt Casual', price: 150, images: ['images/productImages/men/IMG_3265.jpg', 'images/productImages/men/IMG_3265.jpg'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
+			        { id: 4, name: 'Korean Male Sweater', price: 150, images: ['images/productImages/men/IMG_3266.jpg', 'images/productImages/men/IMG_3266.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
+			        { id: 5, name: 'Casual Tee', price: 150, images: ['images/productImages/men/IMG_3267.jpg', 'images/productImages/men/IMG_3267.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men' },
 
-  <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          cartCount: 0,
+			        { id: 6, name: 'Pink Sweater', price: 200, images: ['images/productImages/women/IMG_3218.jpg', 'images/productImages/women/IMG_3218.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
+			        { id: 7, name: 'Cardigan Pink', price: 200, images: ['images/productImages/women/IMG_3219.jpg', 'images/productImages/women/IMG_3219.jpg'], colors: [ '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
+			        { id: 8, name: 'Cardigan Classy', price: 200, images: ['images/productImages/women/IMG_3220.jpg', 'images/productImages/women/IMG_3220.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
+			        { id: 9, name: 'Flowy Cardigan', price: 200, images: ['images/productImages/women/IMG_3222.jpg', 'images/productImages/women/IMG_3222.jpg'], colors: ['#000000',  '#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
+			        { id: 10, name: 'Floral Cardigan', price: 200, images: ['images/productImages/women/IMG_3223.jpg', 'images/productImages/women/IMG_3223.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women' },
 
-          productImages: [
-        'images/kitchen.png',
-        'images/test.jpg',
-        'images/test.jpg'
-        ],
-        activeImage: 'images/test.jpg'
+			        { id: 11, name: 'Girl Dress', price: 80, images: ['images/productImages/kids/IMG_3296.jpg', 'images/productImages/kids/IMG_3296.jpg'], colors: ['#000000', '#E0FFFF', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
+			        { id: 12, name: 'Girl Jumper', price: 80, images: ['images/productImages/kids/IMG_3297.jpg', 'images/productImages/kids/IMG_3297.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', 	], sizes: ['S', 'M'], category: 'kids' },
+			        { id: 13, name: 'Jean Top', price: 80, images: ['images/productImages/kids/IMG_3300.jpg', 'images/productImages/kids/IMG_3300.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
+			        { id: 14, name: 'Girl Floral Dress', price: 80, images: ['images/productImages/kids/IMG_3301.jpg', 'images/productImages/kids/IMG_3301.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'kids' },
+			        { id: 15, name: 'Flowy Dress', price: 80, images: ['images/productImages/kids/IMG_3303.jpg', 'images/productImages/kids/IMG_3303.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['S', 'M'], category: 'kids' },
 
+			        { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
+              { id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen' },
+              { id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen' },
+              { id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen' },
+              { id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen' },
 
-        };
-      }
-    }).mount('#app');
-  </script>
-</body>
+              { id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening' },
+              { id: 22, name: 'Gloves', price: 30, images: ['images/productImages/garden/IMG_3352.jpg', 'images/productImages/garden/IMG_3352.jpg'], category: 'gardening' },
+              { id: 23, name: 'Hedge Shears', price: 23, images: ['images/productImages/garden/IMG_3353.jpg', 'images/productImages/garden/IMG_3353.jpg'], category: 'gardening' },
+              { id: 24, name: 'Garden Trowel', price: 22, images: ['images/productImages/garden/IMG_3354.jpg', 'images/productImages/garden/IMG_3354.jpg'], category: 'gardening' },
+              { id: 25, name: 'Sickle', price: 11, images: ['images/productImages/garden/IMG_3355.jpg', 'images/productImages/garden/IMG_3355.jpg'], category: 'gardening' },
+
+              { id: 26, name: 'Vacuum', price: 80, images: ['images/productImages/clean/IMG_3344.jpg', 'images/productImages/clean/IMG_3344.jpg'], category: 'cleaning' },
+              { id: 27, name: 'Rubbish Bin', price: 40, images: ['images/productImages/clean/IMG_3345.jpg', 'images/productImages/clean/IMG_3345.jpg'], category: 'cleaning' },
+              { id: 28, name: 'Mop', price: 10, images: ['images/productImages/clean/IMG_3348.jpg', 'images/productImages/clean/IMG_3348.jpg'], category: 'cleaning' },
+              { id: 29, name: 'Broom', price: 18, images: ['images/productImages/clean/IMG_3349.jpg', 'images/productImages/clean/IMG_3349.jpg'], category: 'cleaning' },
+              { id: 30, name: 'Dustpan', price: 10, images: ['images/productImages/clean/IMG_3350.jpg', 'images/productImages/clean/IMG_3350.jpg'], category: 'cleaning' },
+
+              { id: 31, name: 'Smart Watch', price: 2000, images: ['images/productImages/mobile/IMG_3371.jpg', 'images/productImages/mobile/IMG_3371.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+              { id: 32, name: 'Ipad Pro 11', price: 2500, images: ['images/productImages/mobile/IMG_3374.jpg', 'images/productImages/mobile/IMG_3374.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+              { id: 33, name: 'Ipad Pro 12.9', price: 3550, images: ['images/productImages/mobile/IMG_3376.jpg', 'images/productImages/mobile/IMG_3376.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+              { id: 34, name: 'Power Bank', price: 80, images: ['images/productImages/mobile/IMG_3384.jpg', 'images/productImages/mobile/IMG_3384.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+              { id: 35, name: 'Phone Notebook', price: 5000, images: ['images/productImages/mobile/IMG_3392.jpg', 'images/productImages/mobile/IMG_3392.jpg'], category: 'mobile' },
+
+              { id: 36, name: 'Laptop Notebook', price: 4000, images: ['images/productImages/laptop/IMG_1000.png', 'images/productImages/laptop/IMG_1000.png'], category: 'laptop' },
+              { id: 37, name: 'Apple Laptop', price: 6000, images: ['images/productImages/laptop/IMG_3372.jpg', 'images/productImages/laptop/IMG_3372.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+              { id: 38, name: 'Chromebook Laptop', price: 3000, images: ['images/productImages/laptop/IMG_1001.png', 'images/productImages/laptop/IMG_1001.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+              { id: 39, name: 'Netbook Laptop', price: 5000, images: ['images/productImages/laptop/IMG_1002.png', 'images/productImages/laptop/IMG_1002.png'], colors: ['#DAF7A6', '#FFC300'], category: 'laptop' },
+              { id: 40, name: 'Gaming Laptop', price: 5500, images: ['images/productImages/laptop/IMG_1003.png', 'images/productImages/laptop/IMG_1003.png'], colors: ['#DAF7A6', '#FFC300'],  category: 'laptop' },
+
+              { id: 41, name: 'Mouse', price: 80, images: ['images/productImages/desktop/IMG_7710.jpg', 'images/productImages/desktop/IMG_7710.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+              { id: 42, name: 'Tower Unit', price: 80, images: ['images/productImages/desktop/IMG_7711.jpg', 'images/productImages/desktop/IMG_7711.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'desktop' },
+              { id: 43, name: 'Desktop Computer', price: 80, images: ['images/productImages/desktop/IMG_7777.jpg', 'images/productImages/desktop/IMG_7777.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+              { id: 44, name: 'Speaker', price: 80, images: ['images/productImages/desktop/IMG_7712.jpg', 'images/productImages/desktop/IMG_7712.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+              { id: 45, name: 'Pen Drive', price: 80, images: ['images/productImages/desktop/IMG_7779.jpg', 'images/productImages/desktop/IMG_7779.jpg'], colors: ['#DAF7A6', '#FFC300'],  category: 'desktop' },
+			      ],
+
+			      productId: null,
+			      product: {},
+			      activeImage: '',
+			      productImages: [],
+			      // searchQuery: '',
+			    };
+			  },
+			  methods: {
+			    getProductFromId(id) {
+			      // Find the product based on the product ID
+			      return this.products.find(product => product.id === id);
+			    },
+			    addToCart() {
+			      // Logic for adding the item to the cart (e.g., storing in localStorage)
+			      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+			      cart.push(this.productId);
+			      localStorage.setItem('cart', JSON.stringify(cart));
+			    }
+			  },
+			  mounted() {
+			    // Get product ID from localStorage
+          this.productId = parseInt(localStorage.getItem('currentProductId'), 10);
+
+			    if (this.productId) {
+			      this.product = this.getProductFromId(this.productId);
+			      this.productImages = this.product.images;
+			      this.activeImage = this.product.images[0];
+			    }
+			  }
+			}).mount('#app');
+		</script>
+	</body>
 </html>
 >
