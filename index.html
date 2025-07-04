@@ -163,10 +163,13 @@
 
                 <!-- Trending Products Gallery -->
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div v-for="product in currentTrendingProducts" :key="product.id" 
-                         class="group cursor-pointer" @click="goToProduct(product.id)">
+                    <div v-for="product in currentTrendingProducts" 
+                    :key="product.id" 
+                    class="group cursor-pointer" 
+                    @click="viewProductDetail(product.id)"
+                >
                         <div class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img :src="product.image" :alt="product.name" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img :src="product.images[0]" :alt="product.name" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
                             <div class="p-4 bg-white">
                               <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
                               <p class="text-pink-600 font-bold">${{ product.price.toFixed(2) }}</p>
@@ -276,7 +279,6 @@
           createApp({
             data() {
               return {
-                
                 currentSlide: 0,
                 heroImages: [
                   {
@@ -317,122 +319,31 @@
                 ],
                 trendingProducts: {
                       clothes: [
-                        {
-                          id: 1,
-                          name: "Smart Casual Black Jacket",
-                          price: 49.99,
-                          image: "images/productImages/men/IMG_3276.jpg"
-                        },
-                        {
-                          id: 2,
-                          name: "Girl Sweater Red ",
-                          price: 89.99,
-                          image: "images/productImages/women/IMG_3260.jpg"
-                        },
-                        {
-                          id: 3,
-                          name: "Male Outerwear Korean",
-                          price: 59.99,
-                          image: "images/productImages/men/IMG_3266.jpg"
-                        },
-                        {
-                          id: 10,
-                          name: "Relaxing Pant and Shirt Black",
-                          price: 59.99,
-                          image: "images/productImages/men/IMG_3282.jpg"
-                        },
-                        {
-                          id: 11,
-                          name: "Kids Blue Dress",
-                          price: 59.99,
-                          image: "images/productImages/kids/IMG_3301.jpg"
-                        },
-                        {
-                          id: 12,
-                          name: "Cherry Lace Neck Dress",
-                          price: 59.99,
-                          image: "images/productImages/women/IMG_3257.jpg"
-                        }
+                        { id: 1, name: 'Casual Sweater', price: 100, images: ['images/productImages/men/IMG_3225.jpg', 'images/productImages/men/IMG_3225.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513'], sizes: ['M', 'L'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 2, name: 'Male Sweater', price: 150, images: ['images/productImages/men/IMG_3264.jpg', 'images/productImages/men/IMG_3264.jpg'], colors: ['#000000',  '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 3, name: 'Shirt Casual', price: 150, images: ['images/productImages/men/IMG_3265.jpg', 'images/productImages/men/IMG_3265.jpg'], colors: ['#000000', '#E0FFFF',  '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 4, name: 'Korean Male Sweater', price: 150, images: ['images/productImages/men/IMG_3266.jpg', 'images/productImages/men/IMG_3266.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 5, name: 'Casual Tee', price: 150, images: ['images/productImages/men/IMG_3267.jpg', 'images/productImages/men/IMG_3267.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['S', 'M'], category: 'men', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 6, name: 'Pink Sweater', price: 200, images: ['images/productImages/women/IMG_3218.jpg', 'images/productImages/women/IMG_3218.jpg'], colors: ['#000000', '#E0FFFF', '	#8B4513', '	#FFF0F5'], sizes: ['M', 'L', 'XL'], category: 'women', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
                       ],
                       gadgets: [
-                        {
-                          id: 4,
-                          name: "Samsung S24 Ultra",
-                          price: 129.99,
-                          image: "images/productImages/mobile/IMG_3392.jpg"
-                        },
-                        {
-                          id: 5,
-                          name: "Smart Watch",
-                          price: 199.99,
-                          image: "images/productImages/mobile/IMG_3371.jpg"
-                        },
-                        {
-                          id: 6,
-                          name: "Mac Air",
-                          price: 79.99,
-                          image: "images/productImages/laptop/IMG_3397.jpg"
-                        },
-                        {
-                          id: 13,
-                          name: "Power Bank",
-                          price: 59.99,
-                          image: "images/productImages/mobile/IMG_3384.jpg"
-                        },
-                        {
-                          id: 14,
-                          name: "Ipad",
-                          price: 59.99,
-                          image: "images/productImages/mobile/IMG_3374.jpg"
-                        },
-                        {
-                          id: 15,
-                          name: "Apple Mac Book",
-                          price: 59.99,
-                          image: "images/productImages/laptop/IMG_3373.jpg"
-                        }
+                        { id: 31, name: 'Smart Watch', price: 2000, images: ['images/productImages/mobile/IMG_3371.jpg', 'images/productImages/mobile/IMG_3371.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+                        { id: 32, name: 'Ipad Pro 11', price: 2500, images: ['images/productImages/mobile/IMG_3374.jpg', 'images/productImages/mobile/IMG_3374.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+                        { id: 33, name: 'Ipad Pro 12.9', price: 3550, images: ['images/productImages/mobile/IMG_3376.jpg', 'images/productImages/mobile/IMG_3376.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+                        { id: 34, name: 'Power Bank', price: 80, images: ['images/productImages/mobile/IMG_3384.jpg', 'images/productImages/mobile/IMG_3384.jpg'], colors: ['#DAF7A6', '#FFC300'], category: 'mobile' },
+                        { id: 35, name: 'Phone Notebook', price: 5000, images: ['images/productImages/mobile/IMG_3392.jpg', 'images/productImages/mobile/IMG_3392.jpg'], category: 'mobile' },
+                        { id: 36, name: 'Laptop Notebook', price: 4000, images: ['images/productImages/laptop/IMG_1000.png', 'images/productImages/laptop/IMG_1000.png'], category: 'laptop' },
                       ],
                       appliances: [
-                        {
-                          id: 7,
-                          name: "Watering Tool",
-                          price: 149.99,
-                          image: "images/productImages/garden/IMG_3351.jpg"
-                        },
-                        {
-                          id: 8,
-                          name: "Multi-Colored Bins",
-                          price: 89.99,
-                          image: "images/productImages/clean/IMG_3345.jpg"
-                        },
-                        {
-                          id: 9,
-                          name: "High Quality Secatuer",
-                          price: 119.99,
-                          image: "images/productImages/garden/IMG_3353.jpg"
-                        },
-                        {
-                          id: 16,
-                          name: "Air Fryer",
-                          price: 59.99,
-                          image: "images/productImages/kitchen/IMG_3326.jpg"
-                        },
-                        {
-                          id: 17,
-                          name: "Hand Shovel",
-                          price: 59.99,
-                          image: "images/productImages/garden/IMG_3354.jpg"
-                        },
-                        {
-                          id: 18,
-                          name: "Gardening Gloves",
-                          price: 59.99,
-                          image: "images/productImages/garden/IMG_3352.jpg"
-                        }
+                        { id: 16, name: 'Air Fryer', price: 100, images: ['images/productImages/kitchen/IMG_3326.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 17, name: 'Kettle', price: 70, images: ['images/productImages/kitchen/IMG_3327.jpg', 'images/productImages/kitchen/IMG_3327.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 18, name: 'Blender', price: 130, images: ['images/productImages/kitchen/IMG_3328.jpg', 'images/productImages/kitchen/IMG_3328.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 19, name: 'Oven', price: 650, images:['images/productImages/kitchen/IMG_3329.jpg', 'images/productImages/kitchen/IMG_3329.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 20, name: 'Knife', price: 30, images:['images/productImages/kitchen/IMG_3331.jpg', 'images/productImages/kitchen/IMG_3326.jpg'], category: 'kitchen', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
+                        { id: 21, name: 'Watering Can', price: 20, images: ['images/productImages/garden/IMG_3351.jpg', 'images/productImages/garden/IMG_3351.jpg'], category: 'gardening', description: 'A comfortable and stylish casual sweater perfect for everyday wear.', review: 15 },
                       ]
-                    },
-                    trendingCategory: 'clothes' // Default category
-
+                },
+                trendingCategory: 'clothes' // Default category
               }
             },
             computed: {
@@ -441,12 +352,17 @@
               }
             },
             methods: {
+              viewProductDetail(productId) {
+                // Store the product ID in localStorage
+                localStorage.setItem('currentProductId', productId);
+                // Navigate to the product detail page
+                window.location.href = 'productdetailpage.html';
+              },
               nextSlide() {
                 this.currentSlide = (this.currentSlide + 1) % this.heroImages.length;
               },
               prevSlide() {
-                this.currentSlide =
-                  (this.currentSlide - 1 + this.heroImages.length) % this.heroImages.length;
+                this.currentSlide = (this.currentSlide - 1 + this.heroImages.length) % this.heroImages.length;
               },
               goToCategory(slug) {
                 //nagivation logic here
@@ -468,11 +384,6 @@
 
 
           }).mount('#app');
-
-          src="data/products.js"
-
-          
-
     </script>
 </body>
 </html>
