@@ -112,10 +112,7 @@
 							>
 								SIGNUP
 							</a>
-							<a
-								href="wishlist.html"
-								class="text-gray-700 hover:text-pink-600 transition relative"
-							>
+							<a href="wishlist.html" class="text-gray-700 hover:text-pink-600 transition relative">
 								<svg
 									class="w-6 h-6"
 									fill="none"
@@ -134,11 +131,7 @@
 									class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
 								></span>
 							</a>
-							<a 
-								@click="toggleCartSidebar"
-								class="text-gray-700 hover:text-pink-600 transition relative"
-							>
-
+							<button @click="toggleCartSidebar" class="text-gray-700 hover:text-pink-600 transition relative">
 								<svg
 									class="w-6 h-6"
 									fill="none"
@@ -156,7 +149,7 @@
 									v-if="cartCount > 0"
 									class="absolute -top-2 -right-2 bg-pink-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
 								></span>
-							</a>
+							</button>
 						</div>
 
 						<!-- Mobile Menu Button -->
