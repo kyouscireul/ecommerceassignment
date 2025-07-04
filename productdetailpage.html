@@ -72,7 +72,7 @@
 									v-model="searchQuery"
 									type="text"
 									placeholder="Search products..."
-									class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
+									class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
 								/>
 								<button
 									@click="performSearch"
@@ -229,7 +229,7 @@
 					<img
 						:src="activeImage"
 						alt="Main Product"
-						class="ml-20 mb-4 max-w-md h-full object-cover"
+						class="ml-20 mb-4 max-w-md h-full object-cover border-2 border-pink-300"
 					/>
 				</div>
 
@@ -254,7 +254,7 @@
 					</div>
 
 					<button
-						class="bg-gray-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
+						class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
 						@click="addToCart"
 					>
 						Add to Cart
@@ -272,35 +272,35 @@
 			</section>
 
 			<!-- Recommendation Section -->
-			<section id="categories" class="container mx-auto px-10 py-12 rounded-xl bg-pink-50 border">
+			<section id="categories" class="container mx-auto px-10 py-12 rounded-xl bg-white border border-pink-300">
 				<h2 class="text-2xl font-semibold mb-4 pb-6">Recommended for You</h2>
 				<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 					<!-- Product Card -->
-					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<div class="bg-gray-50 rounded-lg shadow-md p-8 flex flex-col items-center h-full">
 					<img src="images/productImages/men/IMG_3266.jpg" alt="Rec 1"
 						class="rounded mb-4 w-full h-64 object-cover" />
-					<h3 class="text-sm text-center">ALBERT EARRINGS – RM59.00</h3>
+					<h3 class="text-sm text-center text-pink-600">ALBERT EARRINGS – RM59.00</h3>
 					</div>
 
 					<!-- Product Card -->
-					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<div class="bg-gray-50 rounded-lg shadow-md p-8 flex flex-col items-center h-full">
 					<img src="images/productImages/garden/IMG_3353.jpg" alt="Rec 2"
 						class="rounded mb-4 w-full h-64 object-cover" />
-					<h3 class="text-sm text-center">DOLL-LACE DRESS – RM209.00</h3>
+					<h3 class="text-sm text-center text-pink-600">DOLL-LACE DRESS – RM209.00</h3>
 					</div>
 
 					<!-- Product Card -->
-					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<div class="bg-gray-50 rounded-lg shadow-md p-8 flex flex-col items-center h-full">
 					<img src="images/productImages/desktop/IMG_7712.png" alt="Rec 3"
 						class="rounded mb-4 w-full h-64 object-cover" />
-					<h3 class="text-sm text-center">MILKY EARRINGS – RM69.00</h3>
+					<h3 class="text-sm text-center text-pink-600">MILKY EARRINGS – RM69.00</h3>
 					</div>
 
 					<!-- Product Card -->
-					<div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center h-full">
+					<div class="bg-gray-50 rounded-lg shadow-md p-8 flex flex-col items-center h-full">
 					<img src="images/productImages/clean/IMG_3346.jpg" alt="Rec 3"
 						class="rounded mb-4 w-full h-64 object-cover" />
-					<h3 class="text-sm text-center">MILKY EARRINGS – RM69.00</h3>
+					<h3 class="text-sm text-center text-pink-600">MILKY EARRINGS – RM69.00</h3>
 					</div>
 				</div>
 </section>
@@ -313,7 +313,7 @@
 				</div>
 				<textarea
 					placeholder="Write a review..."
-					class="w-full border rounded p-2 mb-4"
+					class="w-full border rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-pink-600 "
 				></textarea>
 				<button
 					class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-pink-600"
