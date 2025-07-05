@@ -209,6 +209,60 @@
             </div>
         </section>
 
+        <!-- Login Modal -->
+        <div v-if="showLogin" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md relative">
+                <button @click="showLogin = false" class="absolute top-3 right-4 text-2xl text-gray-400 hover:text-pink-600">&times;</button>
+                <h1 class="text-4xl font-bold text-center mb-8 text-gray-700" style="font-family: 'Playfair Display', serif;">Veloura</h1>
+                <form @submit.prevent="login">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" v-model="loginEmail" required placeholder="Enter your email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" v-model="loginPassword" required placeholder="Enter your password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <button type="submit" class="w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-600 transition">Login</button>
+                    <p class="text-center text-gray-600 mt-4">
+                        Don't have an account?
+                        <a href="#" class="text-pink-600 hover:underline" @click.prevent="switchToSignup">Sign up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div v-if="showSignup" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md relative">
+                <button @click="showSignup = false" class="absolute top-3 right-4 text-2xl text-gray-400 hover:text-pink-600">&times;</button>
+                <h1 class="text-4xl font-bold text-center mb-8 text-gray-600" style="font-family: 'Playfair Display', serif;">Veloura</h1>
+                <form @submit.prevent="signup">
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-medium mb-2">Name</label>
+                        <input type="text" v-model="signupName" required placeholder="Enter your name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-600">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-medium mb-2">Email</label>
+                        <input type="email" v-model="signupEmail" required placeholder="Enter your email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-600">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-medium mb-2">Password</label>
+                        <input type="password" v-model="signupPassword" required placeholder="Enter your password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-600">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-600 font-medium mb-2">Confirm Password</label>
+                        <input type="password" v-model="signupConfirmPassword" required placeholder="Confirm your password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-600">
+                    </div>
+                    <button type="submit" class="w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700 transition">Sign Up</button>
+                    <p class="text-center text-gray-600 mt-4">
+                        Already have an account?
+                        <a href="#" class="text-pink-600 hover:underline" @click.prevent="switchToLogin">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer id="footer" class="bg-[#F5F5DC] text-gray-800 py-16">
             <div class="max-w-7xl mx-auto px-4">
@@ -283,6 +337,13 @@
                 showSignup: false,
                 showMobileMenu: false,
                 currentSlide: 0,
+                loginEmail: '',
+                loginPassword: '',
+                signupName: '',
+                signupEmail: '',
+                signupPassword: '',
+                signupConfirmPassword: '',
+                wishlistCount: 0,
                 heroImages: [
                   {
                     title: "Clothings",
@@ -350,43 +411,72 @@
               }
             },
             computed: {
-              currentTrendingProducts() {
-                return this.trendingProducts[this.trendingCategory];
-              }
+                currentTrendingProducts() {
+                    return this.trendingProducts[this.trendingCategory];
+                }
             },
             methods: {
-              viewProductDetail(productId) {
-                // Store the product ID in localStorage
-                localStorage.setItem('currentProductId', productId);
-                // Navigate to the product detail page
-                window.location.href = 'productdetailpage.html';
-              },
-              nextSlide() {
-                this.currentSlide = (this.currentSlide + 1) % this.heroImages.length;
-              },
-              prevSlide() {
-                this.currentSlide = (this.currentSlide - 1 + this.heroImages.length) % this.heroImages.length;
-              },
-              goToCategory(slug) {
+                viewProductDetail(productId) {
+                    // Store the product ID in localStorage
+                    localStorage.setItem('currentProductId', productId);
+                    // Navigate to the product detail page
+                    window.location.href = 'productdetailpage.html';
+                },
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.heroImages.length;
+                },
+                prevSlide() {
+                    this.currentSlide = (this.currentSlide - 1 + this.heroImages.length) % this.heroImages.length;
+                },
+                goToCategory(slug) {
                 //nagivation logic here
                 if (slug === 'clothing') {
                     window.location.href = 'listclothes.html';
-                  } else if (slug === 'electronics') {
-                    window.location.href = 'listgadgets.html';
-                  } else if (slug === 'appliances') {
-                    window.location.href = 'listappliances.html';
-                  }
-              },
-              setTrendingCategory(category) {
-                this.trendingCategory = category;
-              },
-              goToProduct(id) {
-                window.location.href = 'productdetailpage.html?id=${id}';
-              }
+                    } else if (slug === 'electronics') {
+                        window.location.href = 'listgadgets.html';
+                    } else if (slug === 'appliances') {
+                        window.location.href = 'listappliances.html';
+                    }
+                },
+                setTrendingCategory(category) {
+                    this.trendingCategory = category;
+                },
+                goToProduct(id) {
+                    window.location.href = 'productdetailpage.html?id=${id}';
+                },
+                switchToSignup() {
+                    this.showLogin = false;
+                    this.showSignup = true;
+                },
+                switchToLogin() {
+                    this.showSignup = false;
+                    this.showLogin = true;
+                },
+                login() {
+                    if (this.loginEmail && this.loginPassword) {
+                        alert(`Logged in as ${this.loginEmail}`);
+                        this.showLogin = false;
+                        // Add real logic or redirect here
+                    } else {
+                        alert("Please enter both email and password.");
+                    }
+                },
+                // Signup logic
+                signup() {
+                    if (!this.signupName || !this.signupEmail || !this.signupPassword || !this.signupConfirmPassword) {
+                        alert("Please fill in all fields.");
+                        return;
+                    }
+                    if (this.signupPassword !== this.signupConfirmPassword) {
+                        alert("Passwords do not match.");
+                    return;
+                    }
+                        alert(`Account created for ${this.signupName}!`);
+                        this.showSignup = false;
+                        // Add real signup logic or redirect here
+                },
             },
-
-
-          }).mount('#app');
+        }).mount('#app');
     </script>
 </body>
 </html>
