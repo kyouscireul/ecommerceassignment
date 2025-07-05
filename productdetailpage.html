@@ -130,17 +130,23 @@
 				<!-- Product Details -->
 				<div>
 					<h1 class="text-3xl font-semibold mb-2">{{ product.name }}</h1>
-					<p class="text-lg text-pink-600 font-bold mb-2">
+					<p class="text-lg text-pink-600 font-bold mb-4">
 						RM{{ product.price }}
 					</p>
-					<p class="text-sm text-gray-500 mb-2">
+					<p class="text-m text-gray-500 mb-2">
+						Product Rating
+					</p>
+					<p class="text-sm text-gray-500 mb-6">
 						★★★★★ ({{ product.review }} reviews)
+					</p>
+					<p class="text-m text-gray-500 mb-2">
+						Product Overview
 					</p>
 					<p class="text-sm text-gray-500 mb-4">
 						{{ product.description }}
 					</p>
 					<div class="mb-4">
-						<p class="font-semibold mb-1">Variations:</p>
+						<p class="font-semibold mb-4">Variations:</p>
 						<div class="space-x-2">
 							<div class="flex gap-1 mt-2">
 								<span v-for="color in product.colors" :key="color" :style="{backgroundColor: color}" class="w-4 h-4 rounded-full border"></span>
@@ -154,12 +160,11 @@
 				</div>
 			</section>
 
-			<!-- Overview Section -->
+			<!-- More item you may like -->
 			<section class="container mx-auto px-4 py-10">
-				<h2 class="text-xl font-semibold mb-2">Product Overview</h2>
+				<h2 class="text-xl font-semibold mb-2">More item you make like..</h2>
 				<p class="text-gray-600">
-					This item features high-quality lace material, a comfortable fit,
-					and timeless elegance suitable for any occasion.
+					Veloura brings you a seamless shopping experience with a diverse range of products. Whether you're refreshing your wardrobe, upgrading your kitchen, or hunting the latest tech, we've got you covered.
 				</p>
 			</section>
 
