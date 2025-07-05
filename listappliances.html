@@ -328,6 +328,10 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      searchQuery: '',
+      showLogin: false,
+      showSignup: false,
+      showMobileMenu: false,
       categoryFilter: '',
       colorFilter: [],
       priceSort: '',
@@ -369,11 +373,14 @@ createApp({
       if (this.colorFilter.length) {
         filtered = filtered.filter(p => p.colors.some(c => this.colorFilter.includes(c)));
       }
-      
       if (this.priceSort === 'asc') {
         filtered.sort((a, b) => a.price - b.price);
       } else if (this.priceSort === 'desc') {
         filtered.sort((a, b) => b.price - a.price);
+      }
+      if (this.searchQuery) {
+        const query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
       }
       return filtered;
     }

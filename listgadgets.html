@@ -330,6 +330,10 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      searchQuery: '',
+      showLogin: false,
+      showSignup: false,
+      showMobileMenu: false,
       priceSort: '',
       categoryFilter: '',
       sectionLimits: {
@@ -365,11 +369,14 @@ createApp({
       if (this.categoryFilter) {
         filtered = filtered.filter(p => p.category === this.categoryFilter);
       }
-      
       if (this.priceSort === 'asc') {
         filtered.sort((a, b) => a.price - b.price);
       } else if (this.priceSort === 'desc') {
         filtered.sort((a, b) => b.price - a.price);
+      }
+      if (this.searchQuery) {
+        const query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
       }
       return filtered;
     }
