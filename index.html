@@ -416,6 +416,9 @@
                 }
             },
             methods: {
+                toggleMobileMenu() {
+                    this.showMobileMenu = !this.showMobileMenu;
+                },
                 viewProductDetail(productId) {
                     // Store the product ID in localStorage
                     localStorage.setItem('currentProductId', productId);

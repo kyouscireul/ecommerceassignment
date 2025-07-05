@@ -61,11 +61,11 @@
 
                     <!-- User Actions -->
                     <div class="flex items-center space-x-4">
-                        <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                        <a href="Login.html" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
                             LOGIN
                         </a>
                         <span class="text-gray-400">|</span>
-                        <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+                        <a href="Signup.html" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
                             SIGNUP
                         </a>
                         <a href="wishlist.html" class="text-gray-700 hover:text-pink-600 transition relative">
@@ -386,6 +386,9 @@ createApp({
     }
   },
   methods: {
+    toggleMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu;
+    },
     toggleColorFilter(color) {
       if (this.colorFilter.includes(color)) {
         this.colorFilter = this.colorFilter.filter(c => c !== color);

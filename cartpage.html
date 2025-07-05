@@ -53,11 +53,11 @@
 
           <!-- User Actions -->
           <div class="flex items-center space-x-4">
-            <a href="#" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+            <a href="Login.html" @click="showLogin = true" class="text-gray-700 hover:text-black-600 transition font-medium">
               LOGIN
             </a>
             <span class="text-gray-400">|</span>
-            <a href="#" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
+            <a href="Signup.html" @click="showSignup = true" class="text-gray-700 hover:text-black-600 transition font-medium">
               SIGNUP
             </a>
             <a href="wishlist.html" class="text-gray-700 hover:text-pink-600 transition relative">
@@ -242,6 +242,10 @@
     createApp({
       data() {
         return {
+          searchQuery: '',
+          showLogin: false,
+          showSignup: false,
+          showMobileMenu: false,
           cart: JSON.parse(localStorage.getItem('cart')) || []
         };
       },
@@ -251,6 +255,9 @@
         }
       },
       methods: {
+        toggleMobileMenu() {
+          this.showMobileMenu = !this.showMobileMenu;
+        },
         increaseQty(index) {
           this.cart[index].qty = (this.cart[index].qty || 1) + 1;
           this.saveCart();
