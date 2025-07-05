@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veloura - Cartpage</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"/>
 </head>
 
 <body class="bg-white text-gray-800">
-  <div style="color: red; font-size: 24px;">TEST</div>
   <div id="app">
     <!-- Header -->
     <header class="bg-white shadow-lg sticky top-0 z-50">
@@ -138,7 +137,7 @@
           <div class="flex-1 ml-4">
             <p class="font-semibold">{{ item.name }}</p>
             <p v-if="item.size" class="text-sm">Size {{ item.size }}</p>
-            <p class="font-bold mt-1">RM{{ item.price.toFixed(2) }} MYR</p>
+            <p class="font-bold mt-1">RM{{ item.price }} MYR</p>
             <div class="flex items-center mt-2 space-x-2">
               <button @click="decreaseQty(index)" class="border w-8 h-8">-</button>
               <span>{{ item.qty }}</span>
@@ -156,7 +155,7 @@
       <section v-if="cart.length > 0" class="mt-6">
         <div class="flex justify-between mb-2">
           <span>SUBTOTAL</span>
-          <span class="font-bold">RM{{ subtotal.toFixed(2) }} MYR</span>
+          <span class="font-bold">RM{{ subtotal }} MYR</span>
         </div>
         <p class="text-sm text-gray-500 mb-4">Tax included and shipping calculated at checkout</p>
         <div class="flex space-x-2">
