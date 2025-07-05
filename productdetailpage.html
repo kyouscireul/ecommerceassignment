@@ -5,10 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Veloura - Product Detail</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
-		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
-			rel="stylesheet"
-		/>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body class="bg-gray-50 text-gray-800">
@@ -372,7 +369,8 @@
 					localStorage.setItem('cart', JSON.stringify(cart));
 					this.cart = cart;
 					this.cartCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
-				},
+					alert('Product added to cart successfully!');
+			    },
 				viewProductDetail(productId) {
 					const product = this.products.find(p => p.id === productId);
 					if (product && product.images && product.images.length > 0) {
@@ -390,6 +388,7 @@
 			  	}
 			  },
 			  mounted() {
+				console.log('Vue mounted successfully');
 			    // Get product ID from localStorage
           		this.productId = parseInt(localStorage.getItem('currentProductId'), 10);
 
@@ -403,7 +402,7 @@
 				let cart = JSON.parse(localStorage.getItem('cart')) || [];
     			this.cartCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
 			  }
-			}).mount('#app');
+			}).mount("#app");
 		</script>
 	</body>
 </html>
