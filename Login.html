@@ -56,7 +56,7 @@ createApp({
     login() {
       if (this.email && this.password) {
         alert(`Logged in as ${this.email}`);
-        // You can replace this with real login logic or redirect
+        window.location.href='index.html';
       } else {
         alert("Please enter both email and password.");
       }
