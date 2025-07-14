@@ -37,13 +37,13 @@
                     </div>
 
                     <!-- Search Bar -->
-                    <div class="hidden md:flex items-center flex-1 w-full mx-8">
-                        <div class="relative w-full flex">
+                    <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                        <div class="relative w-full">
                             <input 
                                 v-model="searchQuery" 
                                 type="text" 
                                 placeholder="Search products..." 
-                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black-500 focus:border-transparent"
+                                class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                             >
                         <button 
                             @click="performSearch"
@@ -73,7 +73,7 @@
                             </svg>
                             <span v-if="wishlistCount > 0" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"></span>
                         </a>
-                        <a href="cartpage.html" class="text-gray-700 hover:text-pink-600 transition relative">
+                        <a href="cartpage.html" class="text-gray-600 hover:text-pink-600 transition relative">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 5H3m4 8v6a2 2 0 002 2h8a2 2 0 002-2v-6"/>
                             </svg>
@@ -98,7 +98,7 @@
                         <!-- Mobile Search -->
                         <div class="flex mt-4">
                             <input v-model="searchQuery" type="text" placeholder="Search..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-pink-600">
-                            <button @click="performSearch" class="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-pink-700">Search</button>
+                            <button @click="performSearch" class="bg-pink-600 text-white px-4 py-2 rounded-r-md hover:bg-pink-600">Search</button>
                         </div>
                     </div>
                 </div>
